@@ -23,7 +23,7 @@ public class Room {
         }
         return p;
     }
-    
+
     public int getTop() {
         return this.top;
     }
@@ -40,23 +40,23 @@ public class Room {
         return top + height - 1;
     }
 
-    public int getCenter_x() {
+    public int getCenterX() {
         return left + width / 2;
     }
 
-    public int getCenter_y() {
+    public int getCenterY() {
         return top - height / 2;
     }
-    
+
     public int getHeight() {
         return this.height;
     }
-    
+
     public int getWidth() {
         return this.width;
     }
 
-    public boolean CollidesWith(Room other) {
+    public boolean collidesWith(Room other) {
         if (left > other.getRight() - 1
                 || top > other.getBottom() - 1
                 || getRight() < other.left + 1

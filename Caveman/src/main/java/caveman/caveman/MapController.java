@@ -12,24 +12,28 @@ public class MapController {
     }
 
     public void createNewMap(int size) {
-        if(size > 500) size = 500;
-        if(size < 10) size = 10;
+        if (size > 500) {
+            size = 500;
+        }
+        if (size < 10) {
+            size = 10;
+        }
         this.maps.add(new Map(size));
     }
-    
-    public boolean addRoom(int index, int size_y, int size_x) {
-        if(index > maps.size()-1) {
+
+    public boolean addRoom(int index, int sizey, int sizex) {
+        if (index > maps.size() - 1) {
             return false;
         }
-        return maps.get(index).addRoom(size_y, size_x);
+        return maps.get(index).addRoom(sizey, sizex);
     }
-    
+
     public List<Map> getMaps() {
         return this.maps;
     }
-    
+
     public int getMapSize(int index) {
-        if(index > maps.size()-1) {
+        if (index > maps.size() - 1) {
             return 0;
         }
         return maps.get(index).getMap().length;
