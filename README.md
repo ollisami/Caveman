@@ -5,4 +5,5 @@ Vuoropohjainen peli jossa seikkaillaan luolastossa ja vältellään vihollisia.
 
 # Dokumentaatio
 [aihemaarittely](dokumentaatio/aihemaarittely.md)
+
 [tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
