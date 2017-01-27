@@ -22,15 +22,15 @@ public class Map {
 
     public boolean addRoom(int rsy, int rsx) {
         Random rand = new Random();
-        if(rsy > map.length-1 || rsx>map.length-1) {
+        if (rsy > map.length - 1 || rsx > map.length - 1) {
             return false;
         }
-        int r_left = rand.nextInt(map.length - 1 - rsx);
-        int r_top = rand.nextInt(map.length - 1 - rsy);
-        int r_width = rsx;
-        int r_height = rsy;
+        int rLeft = rand.nextInt(map.length - 1 - rsx);
+        int rTop = rand.nextInt(map.length - 1 - rsy);
+        int rWidth = rsx;
+        int rHeight = rsy;
 
-        Room r = new Room(r_left, r_top, r_width, r_height);
+        Room r = new Room(rLeft, rTop, rWidth, rHeight);
         if (!roomCollides(r)) {
             rooms.add(r);
         } else {
@@ -48,7 +48,7 @@ public class Map {
 
     private boolean roomCollides(Room r) {
         for (Room other : this.rooms) {
-            if (r.CollidesWith(other)) {
+            if (r.collidesWith(other)) {
                 return true;
             }
         }
