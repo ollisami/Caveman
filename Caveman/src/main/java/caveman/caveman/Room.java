@@ -45,7 +45,7 @@ public class Room {
     }
 
     public int getCenterY() {
-        return top - height / 2;
+        return top + height / 2;
     }
 
     public int getHeight() {
