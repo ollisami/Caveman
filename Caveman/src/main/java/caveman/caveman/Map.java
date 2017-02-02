@@ -11,7 +11,6 @@ public class Map {
 
     public Map(int size) {
         this.map = new int[size][size];
-        // alustetaan kartta
         for (int y = 0; y < map.length; y++) {
             for (int x = 0; x < map[y].length; x++) {
                 setData(y, x, 0);
