@@ -1,4 +1,4 @@
-package caveman.caveman;
+package caveman;
 
 public class Room {
     private int left;

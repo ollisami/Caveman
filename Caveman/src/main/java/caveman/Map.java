@@ -1,4 +1,4 @@
-package caveman.caveman;
+package caveman;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -45,7 +45,6 @@ public class Map {
             createCorridore(r, this.rooms.get(this.rooms.size() - 2));
         }
         return true;
-        //TODO: rooms dont go all the way right, fix it
     }
 
     private boolean roomCollides(Room r) {
@@ -99,15 +98,6 @@ public class Map {
     }
 
     private boolean isBorder(int y, int x) {
-//        if (map[y][x] == 2 && x - 1 > 0 && x + 1 < this.map[y].length && y - 1 > 0 && y + 1 < this.map.length) {
-//            if (map[y][x + 1] == 1 && map[y][x - 1] == 1) {
-//                return true;
-//            } else if (map[y + 1][x] == 1 && map[y - 1][x] == 1) {
-//                return true;
-//            }
-//            return false;
-//        }
-
         if (getData(y, x) == 1) {
             if (getData(y + 1, x) == 0
                     || getData(y - 1, x) == 0
@@ -140,6 +130,14 @@ public class Map {
 
     public int[][] getMap() {
         return this.map;
+    }
+
+    public Room getRandomRoom() {
+        if (!this.rooms.isEmpty()) {
+            Random rand = new Random();
+            return this.rooms.get(rand.nextInt(this.rooms.size() - 1));
+        }
+        return null;
     }
 
     @Override

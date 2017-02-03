@@ -1,4 +1,4 @@
-package caveman.caveman;
+package caveman;
 
 import java.util.ArrayList;
 import java.util.List;
