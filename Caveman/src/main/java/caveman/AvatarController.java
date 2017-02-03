@@ -16,40 +16,26 @@ public class AvatarController {
 
     public void spawnCharacters() {
         Map map = gameController.getCurrentMap();
-        int i = 0;
-        while (i < 10) {
-            Room r = map.getRandomRoom();
-            if (r == null) {
-                System.out.println("Could not found room for player :(");
-                break;
-            }
-            if (map.getData(r.getCenterY(), r.getCenterX()) != 1) {
-                i++;
-                continue;
-            }
-            this.player = new Player(9, r.getCenterY(), r.getCenterX(), 100);
-            map.setData(player.getPosY(), player.getPosX(), player.getSpriteValue());
-            break;
+        Room r = map.getEmptyRoom();
+        if (r == null) {
+            return;
         }
+        this.player = new Player(9, r.getCenterY(), r.getCenterX(), 100);
+        map.setData(player.getPosY(), player.getPosX(), player.getSpriteValue());
 
-        int enemyAmount = 4;
-        int j = 0;
-        while (enemies.size() < enemyAmount && j <= 0) {
-            Room r = map.getRandomRoom();
-            if (r == null) {
-                System.out.println("Could not found room for player :(");
+        int enemyAmount = 4; //Change this!-----------------------------------
+        while (enemies.size() < enemyAmount) {
+            Room room = map.getEmptyRoom();
+            if (room == null) {
+                System.out.println("Could not found room for enemy :(");
                 break;
             }
-            if (map.getData(r.getCenterY(), r.getCenterX()) != 1) {
-                j++;
-                continue;
-            }
-            Enemy e = new Enemy(5, r.getCenterY(), r.getCenterX(), 100);
+            Enemy e = new Enemy(5, room.getCenterY(), room.getCenterX(), 100);
             enemies.add(e);
             map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
         }
     }
-    
+
     public Avatar getPlayer() {
         return this.player;
     }

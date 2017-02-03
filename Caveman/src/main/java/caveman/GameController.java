@@ -12,12 +12,15 @@ public class GameController {
     }
 
     public void createMap() {
-        mapController.createNewMap(20);
+        mapController.createNewMap(50);
         mapController.addRoom(0, 6, 6);
         mapController.addRoom(0, 10, 10);
         mapController.addRoom(0, 5, 5);
         mapController.addRoom(0, 6, 6);
-
+        mapController.addRoom(0, 6, 6);
+        mapController.addRoom(0, 10, 10);
+        mapController.addRoom(0, 5, 5);
+        mapController.addRoom(0, 6, 6);
 
         this.charcterController.spawnCharacters();
     }

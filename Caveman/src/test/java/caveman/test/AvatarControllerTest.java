@@ -1,4 +1,5 @@
 package caveman.test;
+
 import caveman.AvatarController;
 import caveman.GameController;
 import org.junit.After;
@@ -24,16 +25,16 @@ public class AvatarControllerTest {
     public void tearDown() {
     }
 
-//    @Test
-//    public void getPlayer() {
-//        gc.createMap();
-//        cc.getPlayer();
-//        assertFalse(cc.getPlayer() == null);
-//    }
-//
-//    @Test
-//    public void getEnemies() {
-//        gc.createMap();
-//        assertFalse(cc.getEnemies().isEmpty());
-//    }
+    @Test
+    public void getPlayer() {
+        gc.createMap();
+        cc.getPlayer();
+        assertFalse(cc.getPlayer() == null);
+    }
+
+    @Test
+    public void getEnemies() {
+        gc.createMap();
+        assertFalse(cc.getEnemies().isEmpty());
+    }
 }

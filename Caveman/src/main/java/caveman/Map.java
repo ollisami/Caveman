@@ -102,7 +102,11 @@ public class Map {
             if (getData(y + 1, x) == 0
                     || getData(y - 1, x) == 0
                     || getData(y, x + 1) == 0
-                    || getData(y, x - 1) == 0) {
+                    || getData(y, x - 1) == 0
+                    || getData(y - 1, x - 1) == 0
+                    || getData(y + 1, x + 1) == 0
+                    || getData(y - 1, x + 1) == 0
+                    || getData(y + 1, x - 1) == 0) {
                 return true;
             }
         }
@@ -132,12 +136,22 @@ public class Map {
         return this.map;
     }
 
-    public Room getRandomRoom() {
-        if (!this.rooms.isEmpty()) {
-            Random rand = new Random();
-            return this.rooms.get(rand.nextInt(this.rooms.size() - 1));
+    public Room getEmptyRoom() {
+        if (this.rooms.isEmpty()) {
+            return null;
         }
-        return null;
+        List<Room> emptyRooms = new ArrayList<>();
+        for (Room r : this.rooms) {
+            if (getData(r.getCenterY(), r.getCenterX()) == 1) {
+                emptyRooms.add(r);
+            }
+        }
+        if (emptyRooms.isEmpty()) {
+            return null;
+        }
+        Random rand = new Random();
+        int bound = emptyRooms.size() - 1;
+        return emptyRooms.get(rand.nextInt(bound));
     }
 
     @Override

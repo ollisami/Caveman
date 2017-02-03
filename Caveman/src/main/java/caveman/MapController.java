@@ -9,7 +9,7 @@ public class MapController {
 
     public MapController() {
         this.maps = new ArrayList<>();
-        
+
     }
 
     public void createNewMap(int size) {

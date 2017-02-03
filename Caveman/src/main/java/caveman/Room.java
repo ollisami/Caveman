@@ -1,6 +1,7 @@
 package caveman;
 
 public class Room {
+
     private int left;
     private int top;
     private int width;
