@@ -17,4 +17,4 @@ luola generaattorin toiminnot:
 - Uusi luolasto luodaan aina kun pelaaja siirtyy seuraavalle tasolle.
 - Edelliset luolastot ovat aina samanlaisia jos pelaaja päättää palata niihin 
 
-![ALT text)(https://github.com/ollisami/Caveman/blob/master/dokumentaatio/Luokkakaavio.png)
+![ALT text](https://github.com/ollisami/Caveman/blob/master/dokumentaatio/Luokkakaavio.png)
