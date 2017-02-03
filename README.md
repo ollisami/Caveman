@@ -10,6 +10,6 @@ Vuoropohjainen peli jossa seikkaillaan luolastossa ja vältellään vihollisia.
 
 [Luokkakaavio](https://github.com/ollisami/Caveman/blob/master/dokumentaatio/Luokkakaavio.png)
 
-[Stylecheck](https://github.com/ollisami/Caveman/blob/master/dokumentaatio/site/checkstyle.html)
+[Stylecheck](https://htmlpreview.github.io/?https://github.com/ollisami/Caveman/blob/master/dokumentaatio/site/checkstyle.html)
 
-[pit](https://github.com/ollisami/Caveman/blob/master/dokumentaatio/pit/201701251915/index.html)
+[pit](https://htmlpreview.github.io/?https://github.com/ollisami/Caveman/blob/master/dokumentaatio/pit/201702031713/index.html)
