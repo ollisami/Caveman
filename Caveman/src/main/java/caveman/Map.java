@@ -149,9 +149,10 @@ public class Map {
         if (emptyRooms.isEmpty()) {
             return null;
         }
+
         Random rand = new Random();
-        int bound = emptyRooms.size() - 1;
-        return emptyRooms.get(rand.nextInt(bound));
+        int bound = emptyRooms.size();
+        return emptyRooms.get(Math.max(rand.nextInt(bound)-1, 0));
     }
 
     @Override
