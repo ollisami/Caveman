@@ -10,7 +10,7 @@ public class Main {
         GameController gameController = new GameController();
         gameController.createMap();
         //gameController.printCurrentMap();
-        SpriteSheet sheet = new SpriteSheet();
+        SpriteSheet sheet = new SpriteSheet("src/main/resources/images/sprites.png");
 
         JFrame jframe = new JFrame();
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

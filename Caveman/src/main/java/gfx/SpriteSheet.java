@@ -1,6 +1,5 @@
 package gfx;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,11 +9,13 @@ public class SpriteSheet {
 
     private BufferedImage sheet;
 
-    public SpriteSheet() {
+    public SpriteSheet(String path) {
         try {
-            // Retrieve Image
-            this.sheet = ImageIO.read(new File("images/sprites.png"));
+//            // Retrieve Image
+            this.sheet = ImageIO.read(new File(path));
+
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
