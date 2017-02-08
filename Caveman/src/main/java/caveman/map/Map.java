@@ -1,5 +1,6 @@
-package caveman;
+package caveman.map;
 
+import caveman.avatar.Avatar;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
@@ -134,6 +135,23 @@ public class Map {
 
     public int[][] getMap() {
         return this.map;
+    }
+    
+    public int[][] getPlayerView(Avatar player, int size) {
+        int[][] newMap = new int[size][size];
+        if(player == null) {
+            System.out.println("Player is empty");
+            return null;
+        }
+        int orginX = player.getPosX()-(size/2);
+        int orginY = player.getPosY()- (size/2);
+        
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
+                newMap[y][x]=getData(orginY+y, orginX+x);
+            }
+        }
+        return newMap;
     }
 
     public Room getEmptyRoom() {

@@ -1,4 +1,6 @@
-package caveman;
+package caveman.avatar;
+
+import caveman.avatar.Avatar;
 
 public class Player extends Avatar {
 

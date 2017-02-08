@@ -1,4 +1,4 @@
-package gfx;
+package caveman.gfx;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

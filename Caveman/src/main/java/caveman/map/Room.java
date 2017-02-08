@@ -1,4 +1,4 @@
-package caveman;
+package caveman.map;
 
 public class Room {
 

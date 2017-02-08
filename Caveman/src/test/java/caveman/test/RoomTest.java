@@ -1,7 +1,7 @@
 package caveman.test;
 
 
-import caveman.Room;
+import caveman.map.Room;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

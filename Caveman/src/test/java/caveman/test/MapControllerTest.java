@@ -1,9 +1,9 @@
 package caveman.test;
 
 
-import caveman.AvatarController;
+import caveman.avatar.AvatarController;
 import caveman.GameController;
-import caveman.MapController;
+import caveman.map.MapController;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

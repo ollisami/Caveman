@@ -1,4 +1,4 @@
-package caveman;
+package caveman.avatar;
 
 public class Avatar {
 

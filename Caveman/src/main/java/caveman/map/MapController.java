@@ -1,5 +1,6 @@
-package caveman;
+package caveman.map;
 
+import caveman.map.Map;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,13 @@ public class MapController {
 
     public List<Map> getMaps() {
         return this.maps;
+    }
+    
+    public Map getMap(int index) {
+        if(this.maps.size()-1 < index) {
+            return null;
+        }
+        return this.maps.get(index);
     }
 
     public int getMapSize(int index) {

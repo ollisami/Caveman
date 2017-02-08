@@ -1,6 +1,6 @@
 package caveman.test;
 
-import caveman.AvatarController;
+import caveman.avatar.AvatarController;
 import caveman.GameController;
 import org.junit.After;
 import org.junit.Before;

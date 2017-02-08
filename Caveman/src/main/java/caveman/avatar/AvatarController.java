@@ -1,5 +1,8 @@
-package caveman;
+package caveman.avatar;
 
+import caveman.GameController;
+import caveman.map.Map;
+import caveman.map.Room;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +23,7 @@ public class AvatarController {
         if (r == null) {
             return;
         }
-        this.player = new Player(9, r.getCenterY(), r.getCenterX(), 100);
+        this.player = new Player(3, r.getCenterY(), r.getCenterX(), 100);
         map.setData(player.getPosY(), player.getPosX(), player.getSpriteValue());
 
         int enemyAmount = 4; //Change this!-----------------------------------
@@ -30,7 +33,7 @@ public class AvatarController {
                 System.out.println("Could not found room for enemy :(");
                 break;
             }
-            Enemy e = new Enemy(5, room.getCenterY(), room.getCenterX(), 100);
+            Enemy e = new Enemy(4, room.getCenterY(), room.getCenterX(), 100);
             enemies.add(e);
             map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
         }
