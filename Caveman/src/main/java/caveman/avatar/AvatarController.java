@@ -21,6 +21,7 @@ public class AvatarController {
         Map map = gameController.getCurrentMap();
         Room r = map.getEmptyRoom();
         if (r == null) {
+            System.out.println("ERR! Empty room!");
             return;
         }
         this.player = new Player(3, r.getCenterY(), r.getCenterX(), 100);

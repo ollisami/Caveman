@@ -3,6 +3,7 @@ package caveman.map;
 import caveman.map.Map;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MapController {
 
@@ -20,7 +21,16 @@ public class MapController {
         if (size < 10) {
             size = 10;
         }
-        this.maps.add(new Map(size));
+        Map m = new Map(size);
+        Random rand = new Random();
+        int rooms = rand.nextInt(10)+3;
+        int i = 0;
+        while (i < rooms) {
+            m.addRoom(rand.nextInt(10)+4, rand.nextInt(10)+4);
+            i++;
+        }
+        m.setWalls();
+        this.maps.add(m);
     }
 
     public boolean addRoom(int index, int sizey, int sizex) {

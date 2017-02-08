@@ -1,10 +1,9 @@
 package caveman;
-
+//http://zetcode.com/tutorials/javagamestutorial/movingsprites/
 import caveman.map.MapController;
 import caveman.map.Map;
 import caveman.avatar.AvatarController;
 import caveman.gfx.GraphicsController;
-import java.util.Random;
 
 public class GameController {
 
@@ -25,13 +24,6 @@ public class GameController {
 
     public void createMap() {
         mapController.createNewMap(50);
-        Random rand = new Random();
-        int rooms = rand.nextInt(10);
-        int i = 0;
-        while (i < rooms) {
-            mapController.addRoom(0, rand.nextInt(10)+4, rand.nextInt(10)+4);
-            i++;
-        }
         this.avatarController.spawnCharacters();
     }
 
@@ -47,7 +39,11 @@ public class GameController {
     
     public int[][] getPlayerView() {
         Map current = getCurrentMap();
-        return current.getPlayerView(avatarController.getPlayer(), 10);
+        return current.getPlayerView(avatarController.getPlayer(), 30);
+    }
+    
+    public void keyPressed(int y, int x){
+        System.out.println("PRESSED: ");
     }
     
 

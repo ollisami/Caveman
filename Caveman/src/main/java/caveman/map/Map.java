@@ -88,7 +88,7 @@ public class Map {
         }
     }
 
-    private void setWalls() {
+    public void setWalls() {
         for (int y = 0; y < this.map.length; y++) {
             for (int x = 0; x < this.map.length; x++) {
                 if (isBorder(y, x)) {
@@ -165,6 +165,7 @@ public class Map {
             }
         }
         if (emptyRooms.isEmpty()) {
+            System.out.println("No epty rooms left");
             return null;
         }
 
