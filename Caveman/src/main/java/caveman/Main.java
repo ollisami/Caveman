@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
         GameController gameController = new GameController();
         gameController.createMap();
-        //gameController.printCurrentMap();
         gameController.rePaint();
         JFrame jframe = new JFrame();
         jframe.addKeyListener(new IsKeyPressed(gameController));

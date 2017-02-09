@@ -1,43 +1,51 @@
 package caveman.gfx;
 
 import caveman.GameController;
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/** 
+ * Hallitsee ruudulla esitettäviä grafiikoita.
+ * 
+ * @version     1.0
+ * @author      Sami Ollila
+ */ 
 public class GraphicsController extends JPanel {
 
     private GameController gameController;
     private SpriteSheet spriteSheet;
     private BufferedImage[][] imageMap;
-    private JPanel prev;
 
     public GraphicsController(GameController gc) {
         this.gameController = gc;
         this.spriteSheet = new SpriteSheet("src/main/resources/images/sprites.png");
     }
 
+    /**
+     * Metodi luo BufferedImage[][], joka liittää pelaajan näkemän kartan ja
+     * kuva id:t kuva taulukoksi.
+     *
+     */
     private void buildImageMap() {
         int[][] mapView = this.gameController.getPlayerView();
         this.imageMap = new BufferedImage[mapView.length][mapView.length];
-
         for (int y = 0; y < mapView.length; y++) {
             for (int x = 0; x < mapView[y].length; x++) {
                 this.imageMap[y][x] = this.spriteSheet.getSprite(mapView[y][x]);
             }
         }
     }
-    
-    public void paintMap () {
+
+    /**
+     * Piirtää / päivittää ruudulla näkyvän kartan.
+     *
+     */
+    public void paintMap() {
         JPanel p = this;
         buildImageMap();
-        // Draw the grid
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
@@ -50,10 +58,7 @@ public class GraphicsController extends JPanel {
                 add(panel);
             }
         }
-        prev = panel;
-        if (p.getComponents().length > 1) {
-            p.removeAll();
-        }
+        p.removeAll();
         p.add(panel);
         super.revalidate();
     }

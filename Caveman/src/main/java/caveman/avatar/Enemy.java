@@ -1,7 +1,10 @@
 package caveman.avatar;
-
-import caveman.avatar.Avatar;
-
+/** 
+ * Vihollis avatar.
+ * 
+ * @version     1.0
+ * @author      Sami Ollila
+ */ 
 public class Enemy extends Avatar {
 
     public Enemy(int sprite, int y, int x, int health) {

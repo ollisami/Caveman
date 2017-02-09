@@ -1,4 +1,4 @@
-package caveman.test;
+package caveman.test.avatar;
 
 import caveman.avatar.AvatarController;
 import caveman.GameController;
@@ -18,7 +18,7 @@ public class AvatarControllerTest {
     @Before
     public void setUp() {
         gc = new GameController();
-        cc = gc.getCharacterController();
+        cc = gc.getAvatarController();
     }
 
     @After

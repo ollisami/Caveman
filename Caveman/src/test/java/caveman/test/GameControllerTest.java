@@ -32,7 +32,7 @@ public class GameControllerTest {
     //-------------------GameController-----------------
     @Test
     public void GCConstructorWorks() {
-        assertFalse(gameController.getCharacterController() == null);
+        assertFalse(gameController.getAvatarController() == null);
         assertFalse(gameController.getMapController() == null);
     }
 
