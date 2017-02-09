@@ -8,9 +8,4 @@ public class Player extends Avatar {
         super(sprite, y, x, health);
     }
 
-    @Override
-    public void move() {
-
-    }
-
 }

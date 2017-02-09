@@ -1,20 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package caveman;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.JPanel;
 
-/**
- *
- * @author ollisami
- */
 public class IsKeyPressed implements KeyListener {
 
     private GameController gc;
@@ -32,7 +20,7 @@ public class IsKeyPressed implements KeyListener {
         int key = e.getKeyCode();
         int dx = 0;
         int dy = 0;
-        
+
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
         }
@@ -48,7 +36,9 @@ public class IsKeyPressed implements KeyListener {
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
         }
-        gc.keyPressed(dy,dx);
+        if (dx != 0 || dy != 0) {
+            gc.keyPressed(dy, dx);
+        }
     }
 
     @Override

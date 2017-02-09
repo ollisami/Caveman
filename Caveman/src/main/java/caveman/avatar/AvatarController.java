@@ -40,6 +40,45 @@ public class AvatarController {
         }
     }
 
+    public void moveAvatars(int py, int px) {
+        Map map = gameController.getCurrentMap();
+        if (map.getData(this.player.getPosY() + py, this.player.getPosX() + px) == 1) {
+            map.setData(player.getPosY(), player.getPosX(), 1);
+            this.player.move(py, px);
+            map.setData(player.getPosY(), player.getPosX(), player.getSpriteValue());
+        }
+        py = this.player.getPosY();
+        px = this.player.getPosX();
+        
+        for (Avatar e : this.enemies) {
+            int x = 0;
+            int y = 0;
+            if (e.getPosY() != py) {
+                if (e.getPosY() < py) {
+                    y = 1;
+                } else if (e.getPosY() > py) {
+                    y = -1;
+                }
+                if (map.getData(e.getPosY() + y, e.getPosX() + x) != 2) {
+                    map.setData(e.getPosY(), e.getPosX(), 1);
+                    e.move(y, x);
+                    map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
+                    continue;
+                }
+            }
+            if (e.getPosX() < px) {
+                x = 1;
+            } else if (e.getPosX() > px) {
+                x = -1;
+            }
+            if (map.getData(e.getPosY() + y, e.getPosX() + x) != 2) {
+                map.setData(e.getPosY(), e.getPosX(), 1);
+                e.move(y, x);
+                map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
+            }
+        }
+    }
+
     public Avatar getPlayer() {
         return this.player;
     }

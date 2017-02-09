@@ -14,8 +14,9 @@ public class Avatar {
         this.health = health;
     }
 
-    public void move() {
-
+    public void move(int y, int x) {
+        this.posX += x;
+        this.posY +=y;
     }
 
     public int getPosX() {
@@ -33,4 +34,5 @@ public class Avatar {
     public int getSpriteValue() {
         return this.spriteVal;
     }
+    
 }

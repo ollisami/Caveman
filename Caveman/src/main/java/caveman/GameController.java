@@ -19,7 +19,8 @@ public class GameController {
     }
     
     public void rePaint() {
-        this.graphicsController.repaint();
+        System.out.println("repaint");
+        this.graphicsController.paintMap();
     }
 
     public void createMap() {
@@ -39,11 +40,13 @@ public class GameController {
     
     public int[][] getPlayerView() {
         Map current = getCurrentMap();
-        return current.getPlayerView(avatarController.getPlayer(), 30);
+        return current.getPlayerView(avatarController.getPlayer(), 10);
     }
     
     public void keyPressed(int y, int x){
-        System.out.println("PRESSED: ");
+        System.out.println("PRESSED y:" + y + " x:" + x);
+        this.avatarController.moveAvatars(y,x);
+        rePaint();
     }
     
 

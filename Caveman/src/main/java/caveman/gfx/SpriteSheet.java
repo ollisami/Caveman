@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 public class SpriteSheet {
 
     private BufferedImage sheet;
+    BufferedImage[] cutImages;
 
     public SpriteSheet(String path) {
         try {
@@ -17,6 +18,16 @@ public class SpriteSheet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        cutSprite();
+    }
+    
+    private void cutSprite() {
+        this.cutImages = new BufferedImage[5];
+        cutImages[0] = getImage(1, 3);
+        cutImages[1] = getImage(1, 4);
+        cutImages[2] = getImage(1, 5);
+        cutImages[3] = getImage(1, 1);
+        cutImages[4] = getImage(1, 2);
     }
 
     private BufferedImage getImage(int y, int x) {
@@ -28,26 +39,6 @@ public class SpriteSheet {
     }
 
     public BufferedImage getSprite(int i) {
-        BufferedImage buff = null;
-        switch (i) {
-            case 0://Water
-                buff = getImage(1, 3);
-                break;
-            case 1://floor
-                buff = getImage(1, 4);
-                break;
-            case 2://wall
-                buff = getImage(1, 5);
-                break;
-            case 3://player
-                buff = getImage(1, 1);
-                break;
-            case 4://enemy
-                buff = getImage(1, 2);
-                break;
-            default:
-                break;
-        }
-        return buff;
+        return this.cutImages[i];
     }
 }
