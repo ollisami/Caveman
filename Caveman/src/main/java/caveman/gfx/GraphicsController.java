@@ -7,12 +7,13 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-/** 
+
+/**
  * Hallitsee ruudulla esitettäviä grafiikoita.
- * 
- * @version     1.0
- * @author      Sami Ollila
- */ 
+ *
+ * @version 1.0
+ * @author Sami Ollila
+ */
 public class GraphicsController extends JPanel {
 
     private GameController gameController;
@@ -53,8 +54,7 @@ public class GraphicsController extends JPanel {
             for (int x = 0; x < imageMap.length; x++) {
                 c.gridy = y;
                 c.gridx = x;
-                BufferedImage img = imageMap[y][x];
-                panel.add(new JLabel(new ImageIcon(img)), c);
+                panel.add(new JLabel(new ImageIcon(imageMap[y][x])), c);
                 add(panel);
             }
         }

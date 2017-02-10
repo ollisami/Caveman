@@ -27,14 +27,6 @@ public class GameController {
     }
 
     /**
-     * Piirretään näytettävä JPanel uudestaan.
-     *
-     */
-    public void rePaint() {
-        this.graphicsController.paintMap();
-    }
-
-    /**
      * Luodaan uusi kartta.
      *
      */
@@ -113,5 +105,13 @@ public class GameController {
      */
     public GraphicsController getGraphicsController() {
         return this.graphicsController;
+    }
+
+    /**
+     * Piirretään näytettävä JPanel uudestaan.
+     *
+     */
+    public void rePaint() {
+        this.graphicsController.paintMap();
     }
 }
