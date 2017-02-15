@@ -1,7 +1,6 @@
 package caveman.gfx;
 
 import caveman.GameController;
-import caveman.IsKeyPressed;
 import javax.swing.JFrame;
 
 /**

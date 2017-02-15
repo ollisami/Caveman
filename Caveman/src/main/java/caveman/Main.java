@@ -8,7 +8,6 @@ public class Main {
         GameController gameController = new GameController();
         gameController.createMap();
         gameController.rePaint();
-
     }
 
 }
