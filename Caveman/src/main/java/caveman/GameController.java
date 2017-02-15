@@ -17,7 +17,7 @@ public class GameController {
     private AvatarController avatarController;
     private GraphicsController graphicsController;
     private int currentMap = 0;
-    private int mapSize = 150;
+    private int mapSize = 50;
     private int playerViewSize = 20;
 
     public GameController() {

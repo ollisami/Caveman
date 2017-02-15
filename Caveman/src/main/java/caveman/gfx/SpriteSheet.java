@@ -30,12 +30,13 @@ public class SpriteSheet {
      * Leikkaa kuvatiedoston osiin
      */
     private void preCutImages() {
-        this.cutImages = new BufferedImage[5];
+        this.cutImages = new BufferedImage[6];
         cutImages[0] = getImage(1, 3); //water
         cutImages[1] = getImage(1, 4); //floor
         cutImages[2] = getImage(1, 5); //wall
         cutImages[3] = getImage(1, 1); //player
         cutImages[4] = getImage(1, 2); //enemy
+        cutImages[5] = getImage(1, 6); //Swamp
     }
 
     /**

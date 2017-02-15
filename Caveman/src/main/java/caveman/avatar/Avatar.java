@@ -68,4 +68,10 @@ public class Avatar {
     public int getSpriteValue() {
         return this.spriteVal;
     }
+    
+    public int distanceTo (Avatar other) {
+        int distX = Math.abs(posX-other.getPosX());
+        int distY = Math.abs(posY-other.getPosY());
+        return distX+distY;
+    }
 }

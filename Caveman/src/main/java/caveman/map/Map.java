@@ -1,5 +1,6 @@
 package caveman.map;
 
+import caveman.SimplexNoise;
 import caveman.avatar.Avatar;
 import java.util.List;
 import java.util.ArrayList;
@@ -15,11 +16,13 @@ public class Map {
 
     private int[][] map;
     private List<Room> rooms;
+    private SimplexNoise simpleNoise;
 
     public Map(int size) {
         this.map = new int[size][size];
         resetMap();
-        rooms = new ArrayList<>();
+        this.rooms = new ArrayList<>();
+        this.simpleNoise = new SimplexNoise();
     }
 
     private void resetMap() {
@@ -86,11 +89,11 @@ public class Map {
         int y = a.getCenterY();
 
         while (x != b.getCenterX()) {
-            setData(y, x, 1);
-            setData(y + 1, x + 1, 1);
-            setData(y - 1, x - 1, 1);
-            setData(y + 2, x + 2, 1);
-            setData(y - 2, x - 2, 1);
+            setData(y, x, groundValue(y, x));
+            setData(y + 1, x + 1, groundValue(y + 1, x + 1));
+            setData(y - 1, x - 1, groundValue(y - 1, x - 1));
+            setData(y + 2, x + 2, groundValue(y + 2, x + 2));
+            setData(y - 2, x - 2, groundValue(y - 2, x - 2));
             if (x < b.getCenterX()) {
                 x += 1;
                 continue;
@@ -99,17 +102,42 @@ public class Map {
         }
 
         while (y != b.getCenterY()) {
-            setData(y, x, 1);
-            setData(y + 1, x + 1, 1);
-            setData(y - 1, x - 1, 1);
-            setData(y + 2, x + 2, 1);
-            setData(y - 2, x - 2, 1);
+            setData(y, x, groundValue(y, x));
+            setData(y + 1, x + 1, groundValue(y + 1, x + 1));
+            setData(y - 1, x - 1, groundValue(y + 1, x + 1));
+            setData(y + 2, x + 2, groundValue(y + 1, x + 1));
+            setData(y - 2, x - 2, groundValue(y + 1, x + 1));
             if (y < b.getCenterY()) {
                 y += 1;
                 continue;
             }
             y += -1;
         }
+    }
+
+    private int groundValue(int x, int y) {
+        double a = this.simpleNoise.noise((double) x, (double) y);
+        if (a > 0.8) {
+            return 5;
+        }
+        return 1;
+    }
+
+    private boolean isWalkable(int y, int x) {
+        if (getData(y, x) == 0 || getData(y, x) == 2) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isWalkable(int y, int x, String type) {
+        if (type.equals("enemy") && getData(y, x) == 5) {
+            return false;
+        }
+        if (type.equals("enemy") && getData(y, x) == 3) {
+            return true;
+        }
+        return isWalkable(y, x);
     }
 
     /**
@@ -126,7 +154,7 @@ public class Map {
     }
 
     private boolean isBorder(int y, int x) {
-        if (getData(y, x) == 1) {
+        if (getData(y, x) == 1 || getData(y, x) == 5) {
             if (getData(y + 1, x) == 0
                     || getData(y - 1, x) == 0
                     || getData(y, x + 1) == 0

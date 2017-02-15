@@ -5,18 +5,19 @@ import caveman.map.Map;
 import caveman.map.Room;
 import java.util.ArrayList;
 import java.util.List;
-/** 
+
+/**
  * Hallitsee pelin avatareita.
- * 
- * @version     1.0
- * @author      Sami Ollila
- */ 
+ *
+ * @version 1.0
+ * @author Sami Ollila
+ */
 public class AvatarController {
 
     private GameController gameController;
     private Avatar player;
     private List<Avatar> enemies;
-    private int enemyCount = 4;
+    private int enemyCount = 20;
 
     public AvatarController(GameController gameController) {
         this.gameController = gameController;
@@ -58,7 +59,7 @@ public class AvatarController {
      */
     public void moveAvatars(int py, int px) {
         Map map = gameController.getCurrentMap();
-        if (map.getData(this.player.getPosY() + py, this.player.getPosX() + px) == 1) {
+        if (map.isWalkable(this.player.getPosY() + py, this.player.getPosX() + px, "player")) {
             map.setData(player.getPosY(), player.getPosX(), 1);
             this.player.move(py, px);
             map.setData(player.getPosY(), player.getPosX(), player.getSpriteValue());
@@ -66,33 +67,77 @@ public class AvatarController {
         py = this.player.getPosY();
         px = this.player.getPosX();
         for (Avatar e : this.enemies) {
-            int x = 0;
-            int y = 0;
-            if (e.getPosY() != py) {
-                if (e.getPosY() < py) {
-                    y = 1;
-                } else if (e.getPosY() > py) {
-                    y = -1;
-                }
-                if (map.getData(e.getPosY() + y, e.getPosX() + x) != 2) {
-                    map.setData(e.getPosY(), e.getPosX(), 1);
-                    e.move(y, x);
-                    map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
-                    continue;
-                }
+            if (e.distanceTo(this.player) > 10) {
+                continue;
             }
-            y = 0;
-            if (e.getPosX() < px) {
-                x = 1;
-            } else if (e.getPosX() > px) {
-                x = -1;
-            }
-            if (map.getData(e.getPosY() + y, e.getPosX() + x) != 2) {
-                map.setData(e.getPosY(), e.getPosX(), 1);
-                e.move(y, x);
-                map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
-            }
+            int[] newPos = getDirection(map, e.getPosY(), e.getPosX(), this.player.getPosY(), this.player.getPosX());
+            map.setData(e.getPosY(), e.getPosX(), 1);
+            e.move(newPos[0], newPos[1]);
+            map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
         }
+//            int x = 0;
+//            int y = 0;
+//            if (e.getPosY() != py) {
+//                if (e.getPosY() < py) {
+//                    y = 1;
+//                } else if (e.getPosY() > py) {
+//                    y = -1;
+//                }
+//                if (map.isWalkable(e.getPosY() + y, e.getPosX() + x, "enemy")) {
+//                    map.setData(e.getPosY(), e.getPosX(), 1);
+//                    e.move(y, x);
+//                    map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
+//                    continue;
+//                }
+//            }
+//            y = 0;
+//            if (e.getPosX() < px) {
+//                x = 1;
+//            } else if (e.getPosX() > px) {
+//                x = -1;
+//            }
+//            if (map.isWalkable(e.getPosY() + y, e.getPosX() + x, "enemy")) {
+//                map.setData(e.getPosY(), e.getPosX(), 1);
+//                e.move(y, x);
+//                map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
+//            }
+//        }
+
+    }
+
+    private int[] getDirection(Map map, int posY, int posX, int ty, int tx) {
+        int[] p = new int[2];
+        int smallest = 999;
+
+        if (map.isWalkable(posY + 1, posX, "enemy") && smallest > distanceTo(posY+1, posX, ty, tx)) {
+            smallest = distanceTo(posY+1, posX, ty, tx);
+            p[0] = 1;
+            p[1] = 0;
+        }
+        if (map.isWalkable(posY - 1, posX, "enemy") && smallest > distanceTo(posY-1, posX, ty, tx)) {
+            smallest = distanceTo(posY-1, posX, ty, tx);
+            p[0] = -1;
+            p[1] = 0;
+        }
+        if (map.isWalkable(posY, posX+1, "enemy") && smallest > distanceTo(posY, posX+1, ty, tx)) {
+            smallest = distanceTo(posY, posX+1, ty, tx);
+            p[0] = 0;
+            p[1] = 1;
+        }
+        if (map.isWalkable(posY, posX-1, "enemy") && smallest > distanceTo(posY, posX-1, ty, tx)) {
+            smallest = distanceTo(posY, posX-1, ty, tx);
+            p[0] = 0;
+            p[1] = -1;
+        }
+        System.out.println(p[0]);
+        System.out.println(p[1]);
+        return p;
+    }
+
+    private int distanceTo(int cy, int cx, int ty, int tx) {
+        int distX = Math.abs(cx - tx);
+        int distY = Math.abs(cy - ty);
+        return distX + distY;
     }
 
     /**
@@ -112,4 +157,5 @@ public class AvatarController {
     public List<Avatar> getEnemies() {
         return this.enemies;
     }
+
 }
