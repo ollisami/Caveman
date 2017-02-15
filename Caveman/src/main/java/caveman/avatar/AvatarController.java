@@ -75,57 +75,29 @@ public class AvatarController {
             e.move(newPos[0], newPos[1]);
             map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
         }
-//            int x = 0;
-//            int y = 0;
-//            if (e.getPosY() != py) {
-//                if (e.getPosY() < py) {
-//                    y = 1;
-//                } else if (e.getPosY() > py) {
-//                    y = -1;
-//                }
-//                if (map.isWalkable(e.getPosY() + y, e.getPosX() + x, "enemy")) {
-//                    map.setData(e.getPosY(), e.getPosX(), 1);
-//                    e.move(y, x);
-//                    map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
-//                    continue;
-//                }
-//            }
-//            y = 0;
-//            if (e.getPosX() < px) {
-//                x = 1;
-//            } else if (e.getPosX() > px) {
-//                x = -1;
-//            }
-//            if (map.isWalkable(e.getPosY() + y, e.getPosX() + x, "enemy")) {
-//                map.setData(e.getPosY(), e.getPosX(), 1);
-//                e.move(y, x);
-//                map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
-//            }
-//        }
-
     }
 
     private int[] getDirection(Map map, int posY, int posX, int ty, int tx) {
         int[] p = new int[2];
         int smallest = 999;
 
-        if (map.isWalkable(posY + 1, posX, "enemy") && smallest > distanceTo(posY+1, posX, ty, tx)) {
-            smallest = distanceTo(posY+1, posX, ty, tx);
+        if (map.isWalkable(posY + 1, posX, "enemy") && smallest > distanceTo(map, posY + 1, posX, ty, tx)) {
+            smallest = distanceTo(map, posY + 1, posX, ty, tx);
             p[0] = 1;
             p[1] = 0;
         }
-        if (map.isWalkable(posY - 1, posX, "enemy") && smallest > distanceTo(posY-1, posX, ty, tx)) {
-            smallest = distanceTo(posY-1, posX, ty, tx);
+        if (map.isWalkable(posY - 1, posX, "enemy") && smallest > distanceTo(map, posY - 1, posX, ty, tx)) {
+            smallest = distanceTo(map, posY - 1, posX, ty, tx);
             p[0] = -1;
             p[1] = 0;
         }
-        if (map.isWalkable(posY, posX+1, "enemy") && smallest > distanceTo(posY, posX+1, ty, tx)) {
-            smallest = distanceTo(posY, posX+1, ty, tx);
+        if (map.isWalkable(posY, posX + 1, "enemy") && smallest > distanceTo(map, posY, posX + 1, ty, tx)) {
+            smallest = distanceTo(map, posY, posX + 1, ty, tx);
             p[0] = 0;
             p[1] = 1;
         }
-        if (map.isWalkable(posY, posX-1, "enemy") && smallest > distanceTo(posY, posX-1, ty, tx)) {
-            smallest = distanceTo(posY, posX-1, ty, tx);
+        if (map.isWalkable(posY, posX - 1, "enemy") && smallest > distanceTo(map, posY, posX - 1, ty, tx)) {
+            smallest = distanceTo(map, posY, posX - 1, ty, tx);
             p[0] = 0;
             p[1] = -1;
         }
@@ -134,9 +106,15 @@ public class AvatarController {
         return p;
     }
 
-    private int distanceTo(int cy, int cx, int ty, int tx) {
-        int distX = Math.abs(cx - tx);
-        int distY = Math.abs(cy - ty);
+    private int distanceTo(Map map, int cy, int cx, int ty, int tx) {
+        int distX = 0;
+        int distY = 0;
+        for (int y = Math.min(cy, ty); y < Math.max(cy, ty); y++) {
+            distY += map.getCostToEnter(y, cy);
+        }
+        for (int x = Math.min(cx, tx); x < Math.max(cx, tx); x++) {
+            distX += map.getCostToEnter(cy, x);
+        }
         return distX + distY;
     }
 

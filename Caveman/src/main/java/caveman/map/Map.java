@@ -134,6 +134,9 @@ public class Map {
         if (type.equals("enemy") && getData(y, x) == 5) {
             return false;
         }
+        if (type.equals("enemy") && getData(y, x) == 4) {
+            return false;
+        }
         if (type.equals("enemy") && getData(y, x) == 3) {
             return true;
         }
@@ -239,12 +242,27 @@ public class Map {
     private boolean roomIsEmpty(Room r) {
         for (int y = r.getTop() + 1; y < r.getBottom(); y++) {
             for (int x = r.getLeft() + 1; x < r.getRight(); x++) {
-                if (this.map[y][x] != 1) {
+                if (!isWalkable(y,x) || getData(y,x) == 3) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    public int getCostToEnter(int y, int x) {
+        int val = getData(y, x);
+        int p = 0;
+        if (val == 0 || val == 2 || val == 4) {
+            p = 100;
+        }
+        if (val == 1 || val == 3) {
+            p = 1;
+        }
+        if (val == 5) {
+            p = 5;
+        }
+        return p;
     }
 
     @Override
