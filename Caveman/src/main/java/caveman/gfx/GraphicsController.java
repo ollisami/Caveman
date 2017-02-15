@@ -34,5 +34,4 @@ public class GraphicsController {
         jframe.setFocusable(true);
         jframe.setVisible(true);
     }
-
 }

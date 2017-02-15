@@ -5,12 +5,12 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-/** 
+/**
  * Leikkaa kuvatiedoston osiin ja hallitsee osia.
- * 
- * @version     1.0
- * @author      Sami Ollila
- */ 
+ *
+ * @version 1.0
+ * @author Sami Ollila
+ */
 public class SpriteSheet {
 
     private BufferedImage sheet;

@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 9,
-             Errors: 0,
+      <title>File: 12,
+             Errors: 1,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#caveman.Map.java">caveman/Map.java</a>
+                  <a href="${project.url}/checkstyle.html#caveman.IsKeyPressed.java">caveman/IsKeyPressed.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#caveman.AvatarController.java">caveman/AvatarController.java</a>
+                  <a href="${project.url}/checkstyle.html#caveman.map.MapController.java">caveman/map/MapController.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#caveman.Avatar.java">caveman/Avatar.java</a>
+                  <a href="${project.url}/checkstyle.html#caveman.map.Map.java">caveman/map/Map.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#caveman.gfx.GraphicsController.java">caveman/gfx/GraphicsController.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#caveman.Player.java">caveman/Player.java</a>
+                  <a href="${project.url}/checkstyle.html#caveman.map.Room.java">caveman/map/Room.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#caveman.Enemy.java">caveman/Enemy.java</a>
+                  <a href="${project.url}/checkstyle.html#caveman.avatar.Enemy.java">caveman/avatar/Enemy.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#caveman.MapController.java">caveman/MapController.java</a>
+                  <a href="${project.url}/checkstyle.html#caveman.avatar.AvatarController.java">caveman/avatar/AvatarController.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +158,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#caveman.Room.java">caveman/Room.java</a>
+                  <a href="${project.url}/checkstyle.html#caveman.gfx.SpriteSheet.java">caveman/gfx/SpriteSheet.java</a>
                 </td>
                 <td>
                   0
@@ -159,6 +173,34 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#caveman.Main.java">caveman/Main.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#caveman.avatar.Avatar.java">caveman/avatar/Avatar.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#caveman.avatar.Player.java">caveman/avatar/Player.java</a>
                 </td>
                 <td>
                   0

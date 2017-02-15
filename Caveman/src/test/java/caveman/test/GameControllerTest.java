@@ -1,11 +1,8 @@
 package caveman.test;
 
-
 import caveman.GameController;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -43,4 +40,21 @@ public class GameControllerTest {
         assertFalse(gameController.getCurrentMap() == null);
     }
 
+    @Test
+    public void noErrorOnRepaint() {
+        gameController.createMap();
+        gameController.rePaint();
+    }
+
+    @Test
+    public void getPlayerView() {
+        gameController.createMap();
+        int[][] pv = gameController.getPlayerView();
+    }
+
+    @Test
+    public void keyPressedTest() {
+        gameController.createMap();
+        gameController.keyPressed(0, 0);
+    }
 }

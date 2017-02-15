@@ -18,12 +18,16 @@ public class Map {
 
     public Map(int size) {
         this.map = new int[size][size];
+        resetMap();
+        rooms = new ArrayList<>();
+    }
+
+    private void resetMap() {
         for (int y = 0; y < map.length; y++) {
             for (int x = 0; x < map[y].length; x++) {
                 setData(y, x, 0);
             }
         }
-        rooms = new ArrayList<>();
     }
 
     /**
@@ -31,7 +35,6 @@ public class Map {
      *
      * @param rsy huoneen korkeus
      * @param rsx huoneen leveys
-     *
      * @return true jos huoneen lisäys onnistuu, muutoin false
      */
     public boolean addRoom(int rsy, int rsx) {
@@ -111,7 +114,6 @@ public class Map {
 
     /**
      * Luo seinät huoneiden / käytävien ympärille.
-     *
      */
     public void setWalls() {
         for (int y = 0; y < this.map.length; y++) {
@@ -139,13 +141,6 @@ public class Map {
         return false;
     }
 
-    /**
-     * Aseta arvo kartan kohtaa (y,x).
-     *
-     * @param y kartan kohta y
-     * @param x kartan kohta x
-     * @param val uusi arvo
-     */
     public void setData(int y, int x, int val) {
         if (y < 0 || y >= this.map.length
                 || x < 0 || x >= this.map[y].length) {
@@ -154,15 +149,6 @@ public class Map {
         this.map[y][x] = val;
     }
 
-    /**
-     * Palauttaa arvon kartan kohdasta (y,x).
-     *
-     * @param y kartan kohta y
-     * @param x kartan kohta x
-     *
-     * @return palauttaa arvon kohdassa (y,x) tai 0 jos virheelliset
-     * koordinaatit.
-     */
     public int getData(int y, int x) {
         if (y < 0 || y >= this.map.length
                 || x < 0 || x >= this.map.length) {
@@ -171,11 +157,6 @@ public class Map {
         return this.map[y][x];
     }
 
-    /**
-     * palauttaa koko kartan.
-     *
-     * @return kartta taulukko muodossa
-     */
     public int[][] getMap() {
         return this.map;
     }
@@ -191,7 +172,7 @@ public class Map {
         int[][] newMap = new int[size][size];
         if (player == null) {
             System.out.println("Player is empty");
-            return null;
+            return newMap;
         }
         int orginX = player.getPosX() - (size / 2);
         int orginY = player.getPosY() - (size / 2);
@@ -238,11 +219,6 @@ public class Map {
         return true;
     }
 
-    /**
-     * muuttaa huoneen tulostettavaan muotoon.
-     *
-     * @return huone tulostettavassa muodossa.
-     */
     @Override
     public String toString() {
         setWalls();
