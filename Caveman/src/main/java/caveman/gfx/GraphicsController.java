@@ -1,66 +1,38 @@
 package caveman.gfx;
 
 import caveman.GameController;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-/** 
- * Hallitsee ruudulla esitettäviä grafiikoita.
- * 
- * @version     1.0
- * @author      Sami Ollila
- */ 
-public class GraphicsController extends JPanel {
+import caveman.IsKeyPressed;
+import javax.swing.JFrame;
 
-    private GameController gameController;
-    private SpriteSheet spriteSheet;
-    private BufferedImage[][] imageMap;
+/**
+ * Hallitsee ruudulla esitettäviä grafiikoita.
+ *
+ * @version 1.0
+ * @author Sami Ollila
+ */
+public class GraphicsController {
+
+    private JFrame frame;
+    private CanvasPanel canvas;
 
     public GraphicsController(GameController gc) {
-        this.gameController = gc;
-        this.spriteSheet = new SpriteSheet("src/main/resources/images/sprites.png");
+        this.canvas = new CanvasPanel();
+        setFrame(gc);
     }
 
-    /**
-     * Metodi luo BufferedImage[][], joka liittää pelaajan näkemän kartan ja
-     * kuva id:t kuva taulukoksi.
-     *
-     */
-    private void buildImageMap() {
-        int[][] mapView = this.gameController.getPlayerView();
-        this.imageMap = new BufferedImage[mapView.length][mapView.length];
-        for (int y = 0; y < mapView.length; y++) {
-            for (int x = 0; x < mapView[y].length; x++) {
-                this.imageMap[y][x] = this.spriteSheet.getSprite(mapView[y][x]);
-            }
-        }
+    public void paint(int[][] map) {
+        this.canvas.paintMap(map);
     }
 
-    /**
-     * Piirtää / päivittää ruudulla näkyvän kartan.
-     *
-     */
-    public void paintMap() {
-        JPanel p = this;
-        buildImageMap();
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-
-        for (int y = 0; y < imageMap.length; y++) {
-            for (int x = 0; x < imageMap.length; x++) {
-                c.gridy = y;
-                c.gridx = x;
-                BufferedImage img = imageMap[y][x];
-                panel.add(new JLabel(new ImageIcon(img)), c);
-                add(panel);
-            }
-        }
-        p.removeAll();
-        p.add(panel);
-        super.revalidate();
+    private void setFrame(GameController gc) {
+        JFrame jframe = new JFrame();
+        jframe.addKeyListener(new IsKeyPressed(gc));
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jframe.add(this.canvas);
+        jframe.setSize(1000, 1000);
+        jframe.setResizable(false);
+        jframe.setFocusable(true);
+        jframe.setVisible(true);
     }
 
 }

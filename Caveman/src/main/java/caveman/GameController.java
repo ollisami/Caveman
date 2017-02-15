@@ -31,7 +31,7 @@ public class GameController {
      *
      */
     public void rePaint() {
-        this.graphicsController.paintMap();
+        this.graphicsController.paint(getPlayerView());
     }
 
     /**
