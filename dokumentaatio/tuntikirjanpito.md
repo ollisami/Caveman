@@ -7,4 +7,6 @@ Päivä | Tunnit | Kuvaus
 09.02.2017 | 8.0h | Ohjelmointi, grafiikat ja liikkuminen
 10.02.2017 | 1.0h | Luokkakaavion ja dokumentoinnin päivitys
 10.02.2017 | 1.0h | Viime hetken paniikki päivitykset
+16.02.2017 | 2.0h | Stylecheck korjaukset
+17.02.2017 | 6.0h | Käyttöliittymän ja kaavioiden päivitykset
 ... | ... | ...
