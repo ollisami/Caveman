@@ -107,8 +107,6 @@ public class AvatarController {
             p[0] = 0;
             p[1] = -1;
         }
-        System.out.println(p[0]);
-        System.out.println(p[1]);
         return p;
     }
 

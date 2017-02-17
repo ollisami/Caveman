@@ -12,6 +12,7 @@ public class Room {
     private int top;
     private int width;
     private int height;
+    private int[][] data;
 
     /**
      * Konstruktori.
@@ -26,6 +27,34 @@ public class Room {
         this.top = top;
         this.width = width;
         this.height = height;
+
+        data = new int[this.height][this.width];
+        for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
+                data[y][x] = 1;
+            }
+        }
+    }
+
+    /**
+     * Aseta data.
+     *
+     * @param  x x arvo.
+     * @param  y y arvo.
+     * @param  val arvo
+     */
+    public void setData(int x, int y, int val) {
+         System.out.println("x=" + x + " y= " + y);
+         System.out.println("bottom: " + this.getBottom());
+         System.out.println("left: " + this.getLeft());
+         System.out.println("right: " + this.getRight());
+         System.out.println("top: " + this.getTop());
+        if (x < this.left || y > this.getBottom() || x > this.getRight()|| y < this.getTop()) {
+            return;
+        }
+        System.out.println("here");
+        this.data[y][x] = val;
+       
     }
 
     /**
@@ -34,13 +63,7 @@ public class Room {
      * @return huone taulukko muodossa.
      */
     public int[][] getRoom() {
-        int[][] p = new int[this.height][this.width];
-        for (int y = 0; y < this.height; y++) {
-            for (int x = 0; x < this.width; x++) {
-                p[y][x] = 1;
-            }
-        }
-        return p;
+        return data;
     }
 
     /**
@@ -130,6 +153,24 @@ public class Room {
             return false;
         }
         return true;
+    }
+
+    /**
+     * aseta left.
+     *
+     * @param newpos uusi arvo
+     */
+    public void setLeft(int newpos) {
+        this.left = newpos;
+    }
+
+    /**
+     * aseta top.
+     *
+     * @param newpos uusi arvo
+     */
+    public void setTop(int newpos) {
+        this.top = newpos;
     }
 
 }

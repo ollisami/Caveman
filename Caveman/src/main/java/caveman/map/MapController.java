@@ -1,6 +1,7 @@
 package caveman.map;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -31,33 +32,33 @@ public class MapController {
      */
     public void createNewMap(int size) {
         size = Math.min(500, size);
-        size = Math.max(10, size);
+        size = Math.max(20, size);
         Map m = new Map(size);
         Random rand = new Random();
         int rooms = rand.nextInt(roomCount) + 3;
-        int i = 0;
-        while (i < rooms) {
-            m.addRoom(rand.nextInt(10) + 4, rand.nextInt(10) + 4);
-            i++;
+        int count = 0;
+        while (count < 2) {
+            int rsy = rand.nextInt(10) + 4;
+            int rsx = rand.nextInt(10) + 4;
+            int rLeft = rand.nextInt(size - 1 - rsx);
+            int rTop = rand.nextInt(size - 1 - rsy);
+            Room r = new Room(rLeft, rTop, rsx, rsy);
+            if (m.addRoom(r)) {
+                r.setData(r.getCenterX(), r.getCenterY(), 7);
+                count++;
+            }
+        }
+        while (count < rooms) {
+            int rsy = rand.nextInt(10) + 4;
+            int rsx = rand.nextInt(10) + 4;
+            int rLeft = rand.nextInt(size - 1 - rsx);
+            int rTop = rand.nextInt(size - 1 - rsy);
+            if (m.addRoom(new Room(rLeft, rTop, rsx, rsy))) {
+                count++;
+            }
         }
         m.setWalls();
         this.maps.add(m);
-    }
-
-    /**
-     * Lisää uuden huoneen.
-     *
-     * @param index kartan indeksi johon huone lisätään
-     * @param sizey huoneen korkeus
-     * @param sizex huoneen leveys
-     * @see map.addRoom(int,int)
-     * @return true jos lisäys onnistuu, muutoin false.
-     */
-    public boolean addRoom(int index, int sizey, int sizex) {
-        if (index > maps.size() - 1) {
-            return false;
-        }
-        return maps.get(index).addRoom(sizey, sizex);
     }
 
     /**

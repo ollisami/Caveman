@@ -25,14 +25,14 @@ public class MapControllerTest {
     //------------------MapController-------------------
     @Test
     public void mapSizeWorks() {
-        mapController.createNewMap(10);
-        assertEquals(10, mapController.getMapSize(0));
+        mapController.createNewMap(20);
+        assertEquals(20, mapController.getMapSize(0));
     }
 
     @Test
     public void tooSmallMapSizeFails() {
         mapController.createNewMap(-10);
-        assertEquals(10, mapController.getMapSize(0));
+        assertEquals(20, mapController.getMapSize(0));
     }
 
     @Test
@@ -44,17 +44,5 @@ public class MapControllerTest {
     @Test
     public void cantFindRoomWorks() {
         assertEquals(0, mapController.getMapSize(0));
-    }
-
-    @Test
-    public void addRoomWorks() {
-        mapController.createNewMap(30);
-        assertTrue(mapController.addRoom(0, 10, 10));
-    }
-
-    @Test
-    public void addTooBigRoomsFails() {
-        mapController.createNewMap(10);
-        assertFalse(mapController.addRoom(0, 15, 15));
     }
 }

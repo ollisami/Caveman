@@ -3,6 +3,7 @@ package caveman.test.map;
 import caveman.avatar.Avatar;
 import caveman.avatar.Player;
 import caveman.map.Map;
+import caveman.map.Room;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,15 +41,15 @@ public class MapTest {
 
     @Test
     public void canAddRoom() {
-        assertTrue(map.addRoom(10, 10));
-        assertTrue(map.addRoom(10, 10));
+        assertTrue(map.addRoom(new Room(5,5,5,5)));
+        assertTrue(map.addRoom(new Room(20,20,5,5)));
         assertTrue(map.getEmptyRoom() != null);
     }
 
     @Test
     public void noErrorInSettingWalls() {
-        assertTrue(map.addRoom(10, 10));
-        assertTrue(map.addRoom(10, 10));
+        assertTrue(map.addRoom(new Room(5,5,5,5)));
+        assertTrue(map.addRoom(new Room(20,20,5,5)));
         map.setWalls();
     }
 

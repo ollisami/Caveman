@@ -38,32 +38,23 @@ public class Map {
     /**
      * Lisää uuden huoneen.
      *
-     * @param rsy huoneen korkeus
-     * @param rsx huoneen leveys
+     * @param r lisättävä huone
      * @return true jos huoneen lisäys onnistuu, muutoin false
      */
-    public boolean addRoom(int rsy, int rsx) {
-        if (rsy > map.length - 2 || rsx > map.length - 2) {
-            return false;
-        }
-        Random rand = new Random();
-        Room r = null;
+    public boolean addRoom(Room r) {
         int i = 0;
-        while (i < 10) {
-            int rLeft = rand.nextInt(map.length - 1 - rsx);
-            int rTop = rand.nextInt(map.length - 1 - rsy);
-            int rWidth = rsx;
-            int rHeight = rsy;
-
-            r = new Room(rLeft, rTop, rWidth, rHeight);
+        Random rand = new Random();
+        while (true) {
             if (!roomCollides(r)) {
                 this.rooms.add(r);
                 break;
             }
+            r.setLeft(rand.nextInt(map.length - 1 - r.getWidth()));
+            r.setTop(rand.nextInt(map.length - 1 - r.getHeight()));
             i++;
-        }
-        if (r == null) {
-            return false;
+            if (i > 10) {
+                return false;
+            }
         }
         int[][] data = r.getRoom();
         for (int y = 0; y < r.getHeight(); y++) {
@@ -120,7 +111,7 @@ public class Map {
     private int groundValue(int x, int y) {
         Random rand = new Random();
         double a = rand.nextDouble();
-        if (a > 0.8) {
+        if (a > 0.95) {
             return 5;
         }
         return 1;
@@ -146,6 +137,9 @@ public class Map {
             return false;
         }
         if (type.equals("enemy") && getData(y, x) == 4) {
+            return false;
+        }
+        if (type.equals("enemy") && getData(y, x) == 7) {
             return false;
         }
         if (type.equals("enemy") && getData(y, x) == 3) {
@@ -267,7 +261,7 @@ public class Map {
     private boolean roomIsEmpty(Room r) {
         for (int y = r.getTop() + 1; y < r.getBottom(); y++) {
             for (int x = r.getLeft() + 1; x < r.getRight(); x++) {
-                if (!isWalkable(y, x) || getData(y, x) == 3) {
+                if (!isWalkable(y, x) || getData(y, x) == 3 || getData(y, x) == 7) {
                     return false;
                 }
             }
@@ -286,7 +280,7 @@ public class Map {
     public int getCostToEnter(int y, int x) {
         int val = getData(y, x);
         int p = 0;
-        if (val == 0 || val == 2 || val == 4) {
+        if (val == 0 || val == 2 || val == 4 || val == 7) {
             p = 100;
         }
         if (val == 1 || val == 3) {
