@@ -207,6 +207,11 @@ public class Map {
         return this.map[y][x];
     }
 
+    /**
+     * Palauttaa kartan.
+     *
+     * @return map
+     */
     public int[][] getMap() {
         return this.map;
     }
@@ -237,36 +242,14 @@ public class Map {
     /**
      * Palauttaa huoneen jossa ei ole avatareja.
      *
+     * @param index indeksi
      * @return palauttaa huoneen jos sellainen löytyy, muutoin null.
      */
-    public Room getEmptyRoom() {
-        if (this.rooms.isEmpty()) {
+    public Room getRoom(int index) {
+        if (this.rooms.isEmpty() || this.rooms.size() <= index) {
             return null;
         }
-        List<Room> emptyRooms = new ArrayList<>();
-        for (Room r : this.rooms) {
-            if (roomIsEmpty(r)) {
-                emptyRooms.add(r);
-            }
-        }
-        if (emptyRooms.isEmpty()) {
-            System.out.println("No epty rooms left");
-            return null;
-        }
-        Random rand = new Random();
-        int bound = emptyRooms.size();
-        return emptyRooms.get(Math.max(rand.nextInt(bound) - 1, 0));
-    }
-
-    private boolean roomIsEmpty(Room r) {
-        for (int y = r.getTop() + 1; y < r.getBottom(); y++) {
-            for (int x = r.getLeft() + 1; x < r.getRight(); x++) {
-                if (!isWalkable(y, x) || getData(y, x) == 3 || getData(y, x) == 7) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return this.rooms.get(index);
     }
 
     /**

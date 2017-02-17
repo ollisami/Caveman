@@ -41,15 +41,15 @@ public class MapTest {
 
     @Test
     public void canAddRoom() {
-        assertTrue(map.addRoom(new Room(5,5,5,5)));
-        assertTrue(map.addRoom(new Room(20,20,5,5)));
-        assertTrue(map.getEmptyRoom() != null);
+        assertTrue(map.addRoom(new Room(5, 5, 5, 5)));
+        assertTrue(map.addRoom(new Room(20, 20, 5, 5)));
+        assertTrue(map.getRoom(0) != null);
     }
 
     @Test
     public void noErrorInSettingWalls() {
-        assertTrue(map.addRoom(new Room(5,5,5,5)));
-        assertTrue(map.addRoom(new Room(20,20,5,5)));
+        assertTrue(map.addRoom(new Room(5, 5, 5, 5)));
+        assertTrue(map.addRoom(new Room(20, 20, 5, 5)));
         map.setWalls();
     }
 
@@ -69,7 +69,7 @@ public class MapTest {
 
     @Test
     public void getPlayerMap() {
-        Avatar a = new Player(size / 2, size / 2, 9, 100);
+        Avatar a = new Player(size / 2, size / 2, 9, "player");
         int[][] d = map.getPlayerView(a, 20);
         assertEquals(20, d.length);
     }

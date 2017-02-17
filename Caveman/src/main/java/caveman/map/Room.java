@@ -39,22 +39,16 @@ public class Room {
     /**
      * Aseta data.
      *
-     * @param  x x arvo.
-     * @param  y y arvo.
-     * @param  val arvo
+     * @param x x arvo.
+     * @param y y arvo.
+     * @param val arvo
      */
     public void setData(int x, int y, int val) {
-         System.out.println("x=" + x + " y= " + y);
-         System.out.println("bottom: " + this.getBottom());
-         System.out.println("left: " + this.getLeft());
-         System.out.println("right: " + this.getRight());
-         System.out.println("top: " + this.getTop());
-        if (x < this.left || y > this.getBottom() || x > this.getRight()|| y < this.getTop()) {
+        if (x < this.left || y > this.getBottom() || x > this.getRight() || y < this.getTop()) {
             return;
         }
-        System.out.println("here");
-        this.data[y][x] = val;
-       
+        this.data[this.getBottom() - y][x - this.getLeft()] = val;
+
     }
 
     /**

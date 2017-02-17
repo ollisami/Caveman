@@ -25,14 +25,14 @@ public class MapControllerTest {
     //------------------MapController-------------------
     @Test
     public void mapSizeWorks() {
-        mapController.createNewMap(20);
-        assertEquals(20, mapController.getMapSize(0));
+        mapController.createNewMap(50);
+        assertEquals(50, mapController.getMapSize(0));
     }
 
     @Test
     public void tooSmallMapSizeFails() {
         mapController.createNewMap(-10);
-        assertEquals(20, mapController.getMapSize(0));
+        assertEquals(50, mapController.getMapSize(0));
     }
 
     @Test

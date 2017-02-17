@@ -35,6 +35,6 @@ public class AvatarControllerTest {
     @Test
     public void getEnemies() {
         gc.createMap();
-        assertFalse(cc.getEnemies().isEmpty());
+        assertFalse(cc.getAvatars().isEmpty());
     }
 }

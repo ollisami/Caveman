@@ -32,29 +32,25 @@ public class MapController {
      */
     public void createNewMap(int size) {
         size = Math.min(500, size);
-        size = Math.max(20, size);
+        size = Math.max(50, size);
         Map m = new Map(size);
         Random rand = new Random();
         int rooms = rand.nextInt(roomCount) + 3;
         int count = 0;
-        while (count < 2) {
-            int rsy = rand.nextInt(10) + 4;
-            int rsx = rand.nextInt(10) + 4;
-            int rLeft = rand.nextInt(size - 1 - rsx);
-            int rTop = rand.nextInt(size - 1 - rsy);
-            Room r = new Room(rLeft, rTop, rsx, rsy);
-            if (m.addRoom(r)) {
-                r.setData(r.getCenterX(), r.getCenterY(), 7);
-                count++;
-            }
-        }
+        int tries = 0;
         while (count < rooms) {
-            int rsy = rand.nextInt(10) + 4;
-            int rsx = rand.nextInt(10) + 4;
+            int rsy = rand.nextInt(10) + 5;
+            int rsx = rand.nextInt(10) + 5;
             int rLeft = rand.nextInt(size - 1 - rsx);
             int rTop = rand.nextInt(size - 1 - rsy);
             if (m.addRoom(new Room(rLeft, rTop, rsx, rsy))) {
                 count++;
+                continue;
+            }
+            tries++;
+            if (tries > 100) {
+                System.out.println("Error! something went wrong creating the map.");
+                break;
             }
         }
         m.setWalls();

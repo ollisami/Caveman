@@ -16,7 +16,7 @@ public class AvatarTest {
 
     @Before
     public void setUp() {
-        c = new Avatar(0, 0, 0, 100);
+        c = new Avatar(0, 0, 0, "test");
     }
 
     @After
@@ -31,11 +31,6 @@ public class AvatarTest {
     @Test
     public void testGetX() {
         assertEquals(0, c.getPosX());
-    }
-
-    @Test
-    public void testGetHealth() {
-        assertEquals(100, c.getHealth());
     }
 
     @Test

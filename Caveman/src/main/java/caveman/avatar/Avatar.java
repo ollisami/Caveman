@@ -8,10 +8,11 @@ package caveman.avatar;
  */
 public class Avatar {
 
+    private String type;
     private int spriteVal;
     private int posX;
     private int posY;
-    private int health;
+    private int prevdata;
 
     /**
      * Konstruktori.
@@ -19,14 +20,36 @@ public class Avatar {
      * @param spriteVal kuvatiedoston id arvo
      * @param y y sijainti
      * @param x x sijainti
-     * @param health elämää jäljellä
-     *
+     * @param type tyyppi
      */
-    public Avatar(int spriteVal, int y, int x, int health) {
+    public Avatar(int spriteVal, int y, int x, String type) {
         this.spriteVal = spriteVal;
         this.posX = x;
         this.posY = y;
-        this.health = health;
+        this.prevdata = 1;
+        this.type = type;
+    }
+
+    /**
+     * Aseta edellisen sijainnin grafiikka id.
+     *
+     * @param data arvo
+     *
+     */
+    public void setPrevData(int data) {
+        this.prevdata = data;
+        if (data == 3) {
+            this.prevdata = 1;
+        }
+    }
+
+    /**
+     * hae edellisen sijainnin grafiikka id.
+     *
+     * @return data
+     */
+    public int getPrevData() {
+        return this.prevdata;
     }
 
     /**
@@ -62,15 +85,6 @@ public class Avatar {
     }
 
     /**
-     * Palauttaa health arvon.
-     *
-     * @return health arvo
-     */
-    public int getHealth() {
-        return this.health;
-    }
-
-    /**
      * Palauttaa avatarin kuvan id-numeron.
      *
      * @return kuvan id-numero
@@ -91,4 +105,15 @@ public class Avatar {
         int distY = Math.abs(posY - other.getPosY());
         return distX + distY;
     }
+
+    /**
+     * Palauttaa tyypin.
+     *
+     *
+     * @return string tyyppi
+     */
+    public String getType() {
+        return this.type;
+    }
+
 }

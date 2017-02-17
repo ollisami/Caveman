@@ -60,6 +60,15 @@ public class GameController {
     }
 
     /**
+     * Palauttaa nykyisen kartan id:n.
+     *
+     * @return int id
+     */
+    public int getCurrentMapID() {
+        return currentMap;
+    }
+
+    /**
      * Palauttaa sen osan kartasta jonka pelaaja voi nähdä kerralla.
      *
      * @see caveman.map.Map.getPlayerView(Avatar, int)

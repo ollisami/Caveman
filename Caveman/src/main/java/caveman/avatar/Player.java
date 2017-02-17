@@ -14,10 +14,10 @@ public class Player extends Avatar {
      * @param sprite kuva tiedoston id
      * @param y sijainti y
      * @param x sijainti x
-     * @param health elämää jäljellä.
+     * @param name tyyppi
      */
-    public Player(int sprite, int y, int x, int health) {
-        super(sprite, y, x, health);
+    public Player(int sprite, int y, int x, String name) {
+        super(sprite, y, x, name);
     }
 
 }

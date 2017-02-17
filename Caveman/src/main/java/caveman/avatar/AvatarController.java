@@ -16,8 +16,7 @@ public class AvatarController {
 
     private GameController gameController;
     private Avatar player;
-    private List<Avatar> enemies;
-    private int enemyCount = 20;
+    private List<Avatar> avatars;
 
     /**
      * Konstruktori.
@@ -27,7 +26,7 @@ public class AvatarController {
      */
     public AvatarController(GameController gameController) {
         this.gameController = gameController;
-        this.enemies = new ArrayList<>();
+        this.avatars = new ArrayList<>();
     }
 
     /**
@@ -36,22 +35,31 @@ public class AvatarController {
      */
     public void spawnCharacters() {
         Map map = gameController.getCurrentMap();
-        Room r = map.getEmptyRoom();
+        Room r = map.getRoom(0);
         if (r == null) {
             System.out.println("ERR! Empty room!");
             return;
         }
-        this.player = new Player(3, r.getCenterY(), r.getCenterX(), 100);
+        avatars.clear();
+        avatars.add(new Avatar(6, r.getCenterY(), r.getCenterX(), "prevladder"));
+        Avatar prevLadder = avatars.get(0);
+        this.player = new Player(3, r.getCenterY() + 1, r.getCenterX(), "player");
+        map.setData(prevLadder.getPosY(), prevLadder.getPosX(), prevLadder.getSpriteValue());
         map.setData(player.getPosY(), player.getPosX(), player.getSpriteValue());
 
-        while (enemies.size() < enemyCount) {
-            Room room = map.getEmptyRoom();
-            if (room == null) {
+        r = map.getRoom(1);
+        avatars.add(new Avatar(6, r.getCenterY(), r.getCenterX(), "nextladder"));
+        Avatar nextLadder = avatars.get(1);
+        map.setData(nextLadder.getPosY(), nextLadder.getPosX(), nextLadder.getSpriteValue());
+
+        for (int i = 2; i < gameController.getCurrentMapID() * 2 + 3; i++) {
+            r = map.getRoom(i);
+            if (r == null) {
                 System.out.println("Could not found room for enemy :(");
                 break;
             }
-            Enemy e = new Enemy(4, room.getCenterY(), room.getCenterX(), 100);
-            enemies.add(e);
+            Avatar e = new Enemy(4, r.getCenterY(), r.getCenterX(), "enemy");
+            avatars.add(e);
             map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
         }
     }
@@ -65,45 +73,69 @@ public class AvatarController {
      */
     public void moveAvatars(int py, int px) {
         Map map = gameController.getCurrentMap();
+        int curMapId = gameController.getCurrentMapID();
         if (map.isWalkable(this.player.getPosY() + py, this.player.getPosX() + px, "player")) {
-            map.setData(player.getPosY(), player.getPosX(), 1);
+            map.setData(player.getPosY(), player.getPosX(), player.getPrevData());
             this.player.move(py, px);
+            player.setPrevData(map.getData(player.getPosY(), player.getPosX()));
             map.setData(player.getPosY(), player.getPosX(), player.getSpriteValue());
+            for (Avatar a : collidesWith(player)) {
+                if (a.getType().equals("enemy")) {
+                    System.out.println("rip");
+                }
+                if (a.getType().equals("nextladder")) {
+                    System.out.println("Next level!");
+                }
+                if (a.getType().equals(("prevladder"))) {
+                    System.out.println("prev level");
+                }
+            }
         }
-        py = this.player.getPosY();
-        px = this.player.getPosX();
-        for (Avatar e : this.enemies) {
-            if (e.distanceTo(this.player) > 10) {
+        for (Avatar e : this.avatars) {
+            if (!e.getType().equals("enemy") || e.distanceTo(this.player) > 10) {
                 continue;
             }
             int[] newPos = getDirection(map, e.getPosY(), e.getPosX(), this.player.getPosY(), this.player.getPosX());
-            map.setData(e.getPosY(), e.getPosX(), 1);
+            map.setData(e.getPosY(), e.getPosX(), e.getPrevData());
             e.move(newPos[0], newPos[1]);
+            e.setPrevData(map.getData(e.getPosY(), e.getPosX()));
             map.setData(e.getPosY(), e.getPosX(), e.getSpriteValue());
         }
+    }
+
+    private List<Avatar> collidesWith(Avatar a) {
+        List<Avatar> list = new ArrayList<>();
+        for (Avatar b : avatars) {
+            if (b.getPosX() == a.getPosX() && b.getPosY() == a.getPosY()) {
+                list.add(b);
+            }
+        }
+        return list;
     }
 
     private int[] getDirection(Map map, int posY, int posX, int ty, int tx) {
         int[] p = new int[2];
         int smallest = 999;
-
-        if (map.isWalkable(posY + 1, posX, "enemy") && smallest > distanceTo(map, posY + 1, posX, ty, tx)) {
-            smallest = distanceTo(map, posY + 1, posX, ty, tx);
+        int dist = distanceTo(map, posY + 1, posX, ty, tx);
+        if (map.isWalkable(posY + 1, posX, "enemy") && smallest > dist) {
+            smallest = dist;
             p[0] = 1;
             p[1] = 0;
         }
-        if (map.isWalkable(posY - 1, posX, "enemy") && smallest > distanceTo(map, posY - 1, posX, ty, tx)) {
-            smallest = distanceTo(map, posY - 1, posX, ty, tx);
+        dist = distanceTo(map, posY - 1, posX, ty, tx);
+        if (map.isWalkable(posY - 1, posX, "enemy") && smallest > dist) {
+            smallest = dist;
             p[0] = -1;
             p[1] = 0;
         }
-        if (map.isWalkable(posY, posX + 1, "enemy") && smallest > distanceTo(map, posY, posX + 1, ty, tx)) {
-            smallest = distanceTo(map, posY, posX + 1, ty, tx);
+        dist = distanceTo(map, posY, posX + 1, ty, tx);
+        if (map.isWalkable(posY, posX + 1, "enemy") && smallest > dist) {
+            smallest = dist;
             p[0] = 0;
             p[1] = 1;
         }
-        if (map.isWalkable(posY, posX - 1, "enemy") && smallest > distanceTo(map, posY, posX - 1, ty, tx)) {
-            smallest = distanceTo(map, posY, posX - 1, ty, tx);
+        dist = distanceTo(map, posY, posX - 1, ty, tx);
+        if (map.isWalkable(posY, posX - 1, "enemy") && smallest > dist) {
             p[0] = 0;
             p[1] = -1;
         }
@@ -111,15 +143,22 @@ public class AvatarController {
     }
 
     private int distanceTo(Map map, int cy, int cx, int ty, int tx) {
-        int distX = 0;
-        int distY = 0;
-        for (int y = Math.min(cy, ty); y < Math.max(cy, ty); y++) {
-            distY += map.getCostToEnter(y, cy);
+        int sumyx = 0;
+        for (int y = Math.min(cy, ty); y <= Math.max(cy, ty); y++) {
+            sumyx += map.getCostToEnter(y, cx);
         }
-        for (int x = Math.min(cx, tx); x < Math.max(cx, tx); x++) {
-            distX += map.getCostToEnter(cy, x);
+        for (int x = Math.min(cx, tx); x <= Math.max(cx, tx); x++) {
+            sumyx += map.getCostToEnter(ty, x);
         }
-        return distX + distY;
+        int sumxy = 0;
+        for (int x = Math.min(cx, tx); x <= Math.max(cx, tx); x++) {
+            sumxy += map.getCostToEnter(cy, x);
+        }
+        for (int y = Math.min(cy, ty); y <= Math.max(cy, ty); y++) {
+            sumxy += map.getCostToEnter(y, tx);
+        }
+
+        return Math.min(sumyx, sumxy);
     }
 
     /**
@@ -136,8 +175,8 @@ public class AvatarController {
      *
      * @return lista vihollisista.
      */
-    public List<Avatar> getEnemies() {
-        return this.enemies;
+    public List<Avatar> getAvatars() {
+        return this.avatars;
     }
 
 }
