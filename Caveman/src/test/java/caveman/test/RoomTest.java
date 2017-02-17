@@ -1,6 +1,5 @@
 package caveman.test;
 
-
 import caveman.map.Room;
 import org.junit.After;
 import org.junit.AfterClass;

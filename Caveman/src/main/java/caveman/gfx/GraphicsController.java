@@ -14,11 +14,21 @@ public class GraphicsController {
     private JFrame frame;
     private CanvasPanel canvas;
 
+    /**
+     * Konstruktori.
+     *
+     * @param gc GameControlleri
+     */
     public GraphicsController(GameController gc) {
         this.canvas = new CanvasPanel();
         setFrame(gc);
     }
 
+    /**
+     * Uudelleen piirto.
+     *
+     * @param map kartta joka piirretään.
+     */
     public void paint(int[][] map) {
         this.canvas.paintMap(map);
     }

@@ -3,16 +3,22 @@ package caveman.gfx;
 import caveman.GameController;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-/** 
+
+/**
  * Tarkastaa onka näppäimiä painettu ja raportoi siitä GameControllerille.
- * 
- * @version     1.0
- * @author      Sami Ollila
- */ 
+ *
+ * @version 1.0
+ * @author Sami Ollila
+ */
 public class IsKeyPressed implements KeyListener {
 
     private GameController gc;
 
+    /**
+     * Konstruktori.
+     *
+     * @param gc GameControlleri
+     */
     public IsKeyPressed(GameController gc) {
         this.gc = gc;
     }

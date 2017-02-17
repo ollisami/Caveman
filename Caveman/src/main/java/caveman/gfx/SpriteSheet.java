@@ -16,6 +16,11 @@ public class SpriteSheet {
     private BufferedImage sheet;
     BufferedImage[] cutImages;
 
+    /**
+     * Konstruktori.
+     *
+     * @param path polku kuvatiedostoon.
+     */
     public SpriteSheet(String path) {
         try {
             this.sheet = ImageIO.read(new File(path));
@@ -56,7 +61,7 @@ public class SpriteSheet {
     }
 
     /**
-     * Hakee indeksillä kuvan taulukosta
+     * Hakee indeksillä kuvan taulukosta.
      *
      * @param i kuvan indeksi taulukossa
      *

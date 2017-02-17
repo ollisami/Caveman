@@ -13,6 +13,14 @@ public class Room {
     private int width;
     private int height;
 
+    /**
+     * Konstruktori.
+     *
+     * @param left vasemman reunan sijainti
+     * @param top katon sijainti
+     * @param width leveys
+     * @param height korkeus
+     */
     public Room(int left, int top, int width, int height) {
         this.left = left;
         this.top = top;

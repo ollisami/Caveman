@@ -19,6 +19,12 @@ public class AvatarController {
     private List<Avatar> enemies;
     private int enemyCount = 20;
 
+    /**
+     * Konstruktori.
+     *
+     * @param gameController gameControlleri
+     *
+     */
     public AvatarController(GameController gameController) {
         this.gameController = gameController;
         this.enemies = new ArrayList<>();
@@ -119,7 +125,7 @@ public class AvatarController {
     }
 
     /**
-     * Palauttaa pelaaja avatarin
+     * Palauttaa pelaaja avatarin.
      *
      * @return pelaaja avatar
      */

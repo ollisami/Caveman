@@ -20,6 +20,10 @@ public class GameController {
     private int mapSize = 150;
     private int playerViewSize = 20;
 
+    /**
+     * Konstruktori.
+     *
+     */
     public GameController() {
         this.mapController = new MapController();
         this.avatarController = new AvatarController(this);

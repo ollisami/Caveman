@@ -15,6 +15,10 @@ public class MapController {
     private List<Map> maps;
     private int roomCount = 20;
 
+    /**
+     * Konstruktori.
+     *
+     */
     public MapController() {
         this.maps = new ArrayList<>();
     }

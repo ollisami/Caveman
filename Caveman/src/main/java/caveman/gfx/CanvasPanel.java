@@ -13,14 +13,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
+ * Paneli johon grafiikat päivittyvät.
  *
- * @author ollisami
+ * @version 1.0
+ * @author Sami Ollila
  */
 public class CanvasPanel extends JPanel {
 
     private SpriteSheet spriteSheet;
     private BufferedImage[][] imageMap;
 
+    /**
+     * Konstruktori.
+     *
+     */
     public CanvasPanel() {
         this.spriteSheet = new SpriteSheet("src/main/resources/images/sprites.png");
     }
@@ -42,7 +48,7 @@ public class CanvasPanel extends JPanel {
     /**
      * Piirtää / päivittää ruudulla näkyvän kartan.
      *
-     * @param map
+     * @param map kartta joka piirretään.
      */
     public void paintMap(int[][] map) {
         JPanel p = this;
@@ -56,7 +62,7 @@ public class CanvasPanel extends JPanel {
                 c.gridx = x;
                 BufferedImage img = imageMap[y][x];
                 panel.add(new JLabel(new ImageIcon(img)), c);
-                add(panel);
+                //add(panel);
             }
         }
         p.removeAll();

@@ -1,6 +1,5 @@
 package caveman.test.map;
 
-
 import caveman.map.MapController;
 import org.junit.After;
 import org.junit.Before;
@@ -15,14 +14,13 @@ public class MapControllerTest {
     }
 
     @Before
-    public void setUp() {  
+    public void setUp() {
         this.mapController = new MapController();
     }
 
     @After
     public void tearDown() {
     }
-
 
     //------------------MapController-------------------
     @Test

@@ -1,6 +1,5 @@
 package caveman.map;
 
-import caveman.SimplexNoise;
 import caveman.avatar.Avatar;
 import java.util.List;
 import java.util.ArrayList;
@@ -16,13 +15,16 @@ public class Map {
 
     private int[][] map;
     private List<Room> rooms;
-    private SimplexNoise simpleNoise;
 
+    /**
+     * Konstruktori.
+     *
+     * @param size kartan koko
+     */
     public Map(int size) {
         this.map = new int[size][size];
         resetMap();
         this.rooms = new ArrayList<>();
-        this.simpleNoise = new SimplexNoise();
     }
 
     private void resetMap() {
@@ -116,7 +118,8 @@ public class Map {
     }
 
     private int groundValue(int x, int y) {
-        double a = this.simpleNoise.noise((double) x, (double) y);
+        Random rand = new Random();
+        double a = rand.nextDouble();
         if (a > 0.8) {
             return 5;
         }
@@ -130,6 +133,14 @@ public class Map {
         return true;
     }
 
+    /**
+     * Kertoo voiko ruutuun astua.
+     *
+     * @param y sijainti y
+     * @param x sijainti x
+     * @param type avatarin tyyppi.
+     * @return true jos ruutuun voi astua, muutoin false.
+     */
     public boolean isWalkable(int y, int x, String type) {
         if (type.equals("enemy") && getData(y, x) == 5) {
             return false;
@@ -172,6 +183,13 @@ public class Map {
         return false;
     }
 
+    /**
+     * Asettaa ruudun datan.
+     *
+     * @param y sijainti y
+     * @param x sijainti x
+     * @param val uusi arvo
+     */
     public void setData(int y, int x, int val) {
         if (y < 0 || y >= this.map.length
                 || x < 0 || x >= this.map[y].length) {
@@ -180,6 +198,13 @@ public class Map {
         this.map[y][x] = val;
     }
 
+    /**
+     * Palauttaa ruudun datan.
+     *
+     * @param y sijainti y
+     * @param x sijainti x
+     * @return data
+     */
     public int getData(int y, int x) {
         if (y < 0 || y >= this.map.length
                 || x < 0 || x >= this.map.length) {
@@ -216,7 +241,7 @@ public class Map {
     }
 
     /**
-     * Palauttaa huoneen jossa ei ole avatareja
+     * Palauttaa huoneen jossa ei ole avatareja.
      *
      * @return palauttaa huoneen jos sellainen löytyy, muutoin null.
      */
@@ -242,7 +267,7 @@ public class Map {
     private boolean roomIsEmpty(Room r) {
         for (int y = r.getTop() + 1; y < r.getBottom(); y++) {
             for (int x = r.getLeft() + 1; x < r.getRight(); x++) {
-                if (!isWalkable(y,x) || getData(y,x) == 3) {
+                if (!isWalkable(y, x) || getData(y, x) == 3) {
                     return false;
                 }
             }
@@ -250,6 +275,14 @@ public class Map {
         return true;
     }
 
+    /**
+     * Kertoo kuinka hyvä valinta ruutuun astuminen on.
+     *
+     * @param y sijainti y
+     * @param x sijainti x
+     *
+     * @return hinta
+     */
     public int getCostToEnter(int y, int x) {
         int val = getData(y, x);
         int p = 0;
