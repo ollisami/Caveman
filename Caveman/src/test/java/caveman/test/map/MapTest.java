@@ -5,9 +5,7 @@ import caveman.avatar.Player;
 import caveman.map.Map;
 import caveman.map.Room;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -72,5 +70,35 @@ public class MapTest {
         Avatar a = new Player(size / 2, size / 2, 9, "player");
         int[][] d = map.getPlayerView(a, 20);
         assertEquals(20, d.length);
+    }
+
+    @Test
+    public void createWalls() {
+        map.addRoom(new Room(10, 10, 10, 10));
+        map.setWalls();
+        int[][] m = map.getMap();
+        boolean hasWalls = false;
+        for (int y = 0; y < m.length; y++) {
+            for (int x = 0; x < m.length; x++) {
+                if (m[y][x] == 2) {
+                    hasWalls = true;
+                    break;
+                }
+            }
+        }
+        assertTrue(hasWalls);
+    }
+
+    @Test
+    public void getDataWithBadValue() {
+        assertEquals(0, map.getData(-1, -1));
+        assertEquals(0, map.getData(10000, 1000000));
+    }
+
+    @Test
+    public void setDataWithBadValue() {
+        map.setData(-1, -1, 5);
+        map.setData(-100, -100, 5);
+        map.setData(100000, 1000000, 5);
     }
 }

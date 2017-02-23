@@ -43,7 +43,7 @@ public class GameControllerTest {
     @Test
     public void noErrorOnRepaint() {
         gameController.createMap();
-        gameController.rePaint();
+        gameController.repaint();
     }
 
     @Test
@@ -56,5 +56,12 @@ public class GameControllerTest {
     public void keyPressedTest() {
         gameController.createMap();
         gameController.keyPressed(0, 0);
+    }
+
+    @Test
+    public void getControllersTest() {
+        assertFalse(gameController.getAvatarController() == null);
+        assertFalse(gameController.getGraphicsController() == null);
+        assertFalse(gameController.getMapController() == null);
     }
 }

@@ -30,6 +30,9 @@ public class Map {
     private void resetMap() {
         for (int y = 0; y < map.length; y++) {
             for (int x = 0; x < map[y].length; x++) {
+                if (y < 0 || x < 0) {
+                    break;
+                }
                 setData(y, x, 0);
             }
         }
@@ -80,7 +83,6 @@ public class Map {
     private void createCorridore(Room a, Room b) {
         int x = a.getCenterX();
         int y = a.getCenterY();
-
         while (x != b.getCenterX()) {
             setData(y, x, groundValue(y, x));
             setData(y + 1, x + 1, groundValue(y + 1, x + 1));
@@ -118,10 +120,7 @@ public class Map {
     }
 
     private boolean isWalkable(int y, int x) {
-        if (getData(y, x) == 0 || getData(y, x) == 2) {
-            return false;
-        }
-        return true;
+        return !(getData(y, x) == 0 || getData(y, x) == 2);
     }
 
     /**

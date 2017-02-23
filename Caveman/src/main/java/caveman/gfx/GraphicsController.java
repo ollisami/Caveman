@@ -42,5 +42,14 @@ public class GraphicsController {
         jframe.setResizable(false);
         jframe.setFocusable(true);
         jframe.setVisible(true);
+        this.frame = jframe;
+    }
+
+    /**
+     * Uudelleen JFramen.
+     *
+     */
+    public JFrame getFrame() {
+        return this.frame;
     }
 }

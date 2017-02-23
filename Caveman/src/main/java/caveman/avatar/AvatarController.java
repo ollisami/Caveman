@@ -52,7 +52,8 @@ public class AvatarController {
         Avatar nextLadder = avatars.get(1);
         map.setData(nextLadder.getPosY(), nextLadder.getPosX(), nextLadder.getSpriteValue());
 
-        for (int i = 2; i < gameController.getCurrentMapID() * 2 + 3; i++) {
+        int enemyCount = 1;//gameController.getCurrentMapID() * 2 + 4;
+        for (int i = 2; i < enemyCount + 2; i++) {
             r = map.getRoom(i);
             if (r == null) {
                 System.out.println("Could not found room for enemy :(");

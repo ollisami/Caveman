@@ -37,4 +37,12 @@ public class AvatarControllerTest {
         gc.createMap();
         assertFalse(cc.getAvatars().isEmpty());
     }
+
+    @Test
+    public void spawnTest() {
+        gc.start();
+        assertFalse(cc.getPlayer() == null);
+        assertFalse(cc.getAvatars().isEmpty());
+    }
+
 }

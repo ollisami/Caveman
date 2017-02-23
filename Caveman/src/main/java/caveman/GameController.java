@@ -31,6 +31,15 @@ public class GameController {
     }
 
     /**
+     * Aloitetaan peli.
+     *
+     */
+    public void start() {
+        createMap();
+        repaint();
+    }
+
+    /**
      * Luodaan uusi kartta.
      *
      */
@@ -90,7 +99,7 @@ public class GameController {
      */
     public void keyPressed(int y, int x) {
         this.avatarController.moveAvatars(y, x);
-        rePaint();
+        repaint();
     }
 
     /**
@@ -124,7 +133,7 @@ public class GameController {
      * Piirretään näytettävä JPanel uudestaan.
      *
      */
-    public void rePaint() {
+    public void repaint() {
         this.graphicsController.paint(getPlayerView());
     }
 }

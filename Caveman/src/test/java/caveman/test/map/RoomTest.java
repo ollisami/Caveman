@@ -1,10 +1,8 @@
-package caveman.test;
+package caveman.test.map;
 
 import caveman.map.Room;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -61,5 +59,19 @@ public class RoomTest {
     @Test
     public void testHeight() {
         assertEquals(12, r.getHeight());
+    }
+
+    @Test
+    public void Constructor() {
+        int[][] data = r.getRoom();
+        assertEquals(data[0][0], 1);
+    }
+
+    @Test
+    public void setData() {
+        r.setData(-1, -1, 0);
+        r.setData(-100, -100, 0);
+        r.setData(100000000, 10000000, 0);
+
     }
 }

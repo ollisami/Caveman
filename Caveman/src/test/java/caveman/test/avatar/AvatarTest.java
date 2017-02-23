@@ -38,4 +38,27 @@ public class AvatarTest {
         assertEquals(0, c.getSpriteValue());
     }
 
+    @Test
+    public void testPrevDataValue() {
+        c.setPrevData(1);
+        assertEquals(1, c.getPrevData());
+        c.setPrevData(3);
+        assertEquals(1, c.getPrevData());
+    }
+
+    @Test
+    public void testMove() {
+        assertEquals(0, c.getPosX());
+        assertEquals(0, c.getPosY());
+        c.move(1, 1);
+        assertEquals(1, c.getPosX());
+        assertEquals(1, c.getPosY());
+    }
+
+    @Test
+    public void testDistance() {
+        Avatar a = new Avatar(5, 5, 5, "test");
+        assertEquals(10, c.distanceTo(a));
+    }
+
 }

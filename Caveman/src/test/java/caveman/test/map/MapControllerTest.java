@@ -45,4 +45,9 @@ public class MapControllerTest {
     public void cantFindRoomWorks() {
         assertEquals(0, mapController.getMapSize(0));
     }
+
+    @Test
+    public void getMaps() {
+        assertFalse(mapController.getMaps() == null);
+    }
 }

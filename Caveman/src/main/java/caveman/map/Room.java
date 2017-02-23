@@ -140,6 +140,9 @@ public class Room {
      * @return true jos huoneet törmäävät, muutoin false
      */
     public boolean collidesWith(Room other) {
+        if (other == null) {
+            return false;
+        }
         if (left > other.getRight() - 1
                 || top > other.getBottom() - 1
                 || getRight() < other.left + 1
