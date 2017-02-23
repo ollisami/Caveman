@@ -1,7 +1,8 @@
 Aihe: Vuoropohjainen peli jossa seikkaillaan luolastossa ja vältellään vihollisia. Pelaaja etenee rappusia pitkin seuraavalle tasolle
 ja yrittää päästä mahdollisimman suurelle tasolle.
 
-Ohjeet: Liikuta pelaajaa (keltainen olio) nuolinäppäimillä ja yritä vältellä vihollisia (punaiset oliot).
+Käyttöohjeet: Liikuta pelaajaa (keltainen olio) nuolinäppäimillä ja yritä vältellä vihollisia (punaiset oliot). Viholliset eivät osaa kulkea pusikoiden lävitse, joten voit hyödyntää niitä piiloutumiseen!
+
 
 Käyttäjät: Pelaaja, vihollisten tekoäly
 
