@@ -1,7 +1,6 @@
 package caveman.map;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -14,7 +13,7 @@ import java.util.Random;
 public class MapController {
 
     private List<Map> maps;
-    private int roomCount = 20;
+    private int roomCount = 200;
 
     /**
      * Konstruktori.
@@ -31,7 +30,7 @@ public class MapController {
      *
      */
     public void createNewMap(int size) {
-        size = Math.min(500, size);
+        size = Math.min(5000, size);
         size = Math.max(50, size);
         Map m = new Map(size);
         Random rand = new Random();

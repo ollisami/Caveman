@@ -52,7 +52,7 @@ public class AvatarController {
         Avatar nextLadder = avatars.get(1);
         map.setData(nextLadder.getPosY(), nextLadder.getPosX(), nextLadder.getSpriteValue());
 
-        int enemyCount = 1;//gameController.getCurrentMapID() * 2 + 4;
+        int enemyCount = 50;
         for (int i = 2; i < enemyCount + 2; i++) {
             r = map.getRoom(i);
             if (r == null) {

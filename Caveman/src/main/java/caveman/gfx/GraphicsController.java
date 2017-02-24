@@ -48,6 +48,7 @@ public class GraphicsController {
     /**
      * Uudelleen JFramen.
      *
+     * @return JFrame
      */
     public JFrame getFrame() {
         return this.frame;
