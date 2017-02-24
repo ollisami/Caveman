@@ -3,6 +3,7 @@ package caveman.gfx;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 /**
@@ -21,9 +22,10 @@ public class SpriteSheet {
      *
      * @param path polku kuvatiedostoon.
      */
-    public SpriteSheet(String path) {
+    public SpriteSheet() {
         try {
-            this.sheet = ImageIO.read(new File(path));
+            InputStream is = getClass().getClassLoader().getResourceAsStream("images/sprites.png");
+            this.sheet = ImageIO.read(is);
 
         } catch (IOException e) {
             e.printStackTrace();

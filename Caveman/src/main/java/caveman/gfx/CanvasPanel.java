@@ -28,7 +28,7 @@ public class CanvasPanel extends JPanel {
      *
      */
     public CanvasPanel() {
-        this.spriteSheet = new SpriteSheet("src/main/resources/images/sprites.png");
+        this.spriteSheet = new SpriteSheet();
     }
 
     /**

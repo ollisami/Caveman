@@ -37,8 +37,8 @@ public class MapControllerTest {
 
     @Test
     public void tooBigMapSizeFails() {
-        mapController.createNewMap(600);
-        assertEquals(500, mapController.getMapSize(0));
+        mapController.createNewMap(6000);
+        assertEquals(5000, mapController.getMapSize(0));
     }
 
     @Test
