@@ -1,10 +1,13 @@
-Aihe: Vuoropohjainen peli jossa seikkaillaan luolastossa ja vältellään vihollisia. Pelaaja etenee rappusia pitkin seuraavalle tasolle
+## Aihe
+Vuoropohjainen peli jossa seikkaillaan luolastossa ja vältellään vihollisia. Pelaaja etenee rappusia pitkin seuraavalle tasolle
 ja yrittää päästä mahdollisimman suurelle tasolle.
 
-Käyttöohjeet: Liikuta pelaajaa (keltainen olio) nuolinäppäimillä ja yritä vältellä vihollisia (punaiset oliot). Viholliset eivät osaa kulkea pusikoiden lävitse, joten voit hyödyntää niitä piiloutumiseen!
+## Käyttöohjeet
+Liikuta pelaajaa (keltainen olio) nuolinäppäimillä ja yritä vältellä vihollisia (punaiset oliot). Viholliset eivät osaa kulkea pusikoiden lävitse, joten voit hyödyntää niitä piiloutumiseen!
 
 
-Käyttäjät: Pelaaja, vihollisten tekoäly
+## Käyttäjät
+Pelaaja, vihollisten tekoäly
 
 Kaikkien käyttäjien toiminnot:
 - Liikkuvat jokaisella vuorolla yhden askeleen pysty- tai vaakasuunnassa
@@ -20,7 +23,7 @@ luola generaattorin toiminnot:
 - Uusi luolasto luodaan aina kun pelaaja siirtyy seuraavalle tasolle.
 - Edelliset luolastot ovat aina samanlaisia jos pelaaja päättää palata niihin 
 
-Rakennekuvaus:
+## Rakennekuvaus
 - Pelin ytimenä toimii GameController-luokka, joka luo alussa muut controllerit (MapController, GraphicsController ja AvatarController).
 
 - Kun peli alkaa luodaan MapControlleriin uusi kartta (Map). Kartta toteutetaan matriisina johon tallennetaan id-arvoja jotka GraphicsController muuntaa kuviksi. Kartta asetta aluksi kaikki alueet vedeksi johon piirretään n-määrä huoneita. Kun huoneita on n > 1, yhdistetään huone n käytävällä huoneseen n-1. Tästä seuraa että jokaiselle huoneelle n on polku huoneeseen n-1, eli toisin sanoen jokaisesta huoneesta x on myös polku huoneeseen n = 1. Kun n-määrä huoneita on luotu muutetaan kaikki vettä koskettavat maa-alueet seiniksi. Maa-alueta on kahta erityyppiä, normaali maa ja puska. Pelaaja voi piiloutua puskaan vihollisita, jotka eivät osaa kulkea puskien lävitse.
