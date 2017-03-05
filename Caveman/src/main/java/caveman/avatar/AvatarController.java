@@ -83,12 +83,13 @@ public class AvatarController {
             for (Avatar a : collidesWith(player)) {
                 if (a.getType().equals("enemy")) {
                     System.out.println("rip");
+                    gameController.restart();
                 }
                 if (a.getType().equals("nextladder")) {
-                    System.out.println("Next level!");
+                    //System.out.println("Next level!");
                 }
                 if (a.getType().equals(("prevladder"))) {
-                    System.out.println("prev level");
+                    //System.out.println("prev level");
                 }
             }
         }

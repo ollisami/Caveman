@@ -20,7 +20,6 @@ public class SpriteSheet {
     /**
      * Konstruktori.
      *
-     * @param path polku kuvatiedostoon.
      */
     public SpriteSheet() {
         try {

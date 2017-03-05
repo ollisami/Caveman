@@ -17,7 +17,7 @@ public class GameController {
     private AvatarController avatarController;
     private GraphicsController graphicsController;
     private int currentMap = 0;
-    private int mapSize = 500;
+    private int mapSize = 200;
     private int playerViewSize = 20;
 
     /**
@@ -37,6 +37,17 @@ public class GameController {
     public void start() {
         createMap();
         repaint();
+    }
+
+    /**
+     * Aloittaa pelin alusta.
+     *
+     */
+    public void restart() {
+        this.mapController = new MapController();
+        this.avatarController = new AvatarController(this);
+        this.graphicsController = new GraphicsController(this);
+        start();
     }
 
     /**
@@ -61,7 +72,6 @@ public class GameController {
     /**
      * Palauttaa nykyisen kartan.
      *
-     * @see mapController.getMap(int)
      * @return Map
      */
     public Map getCurrentMap() {
@@ -80,7 +90,6 @@ public class GameController {
     /**
      * Palauttaa sen osan kartasta jonka pelaaja voi nähdä kerralla.
      *
-     * @see caveman.map.Map.getPlayerView(Avatar, int)
      * @return kartta pelaajan näkökentästä.
      */
     public int[][] getPlayerView() {
@@ -95,7 +104,6 @@ public class GameController {
      * @param y y koordinaatti johon pelaaja tahtoo liikkua
      * @param x x koordinaatti johon pelaaja tahtoo liikkua
      *
-     * @see caveman.avatar.AvatarController.moveAvatars(int, int)
      */
     public void keyPressed(int y, int x) {
         this.avatarController.moveAvatars(y, x);
